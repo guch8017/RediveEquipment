@@ -43,8 +43,6 @@ public class DatabaseReflector {
         try {
             Class reflectClass = Class.forName(className);
             Field[] fields = reflectClass.getFields();
-
-
             Cursor cursor = db.rawQuery(sql, new String[]{});
             while (cursor.moveToNext()){
                 Object classObject = reflectClass.newInstance();

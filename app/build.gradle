@@ -36,7 +36,7 @@ dependencies {
     api('com.arialyy.aria:core:<last-version>') {
         exclude group: 'androidx.appcompat.app'
     }
-    // brotlij
+    // brotli
     implementation project(path: ':brotlij')
 
     // UIL

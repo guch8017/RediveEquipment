@@ -1,5 +1,6 @@
 package com.guch8017.myapplication.ui.home;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -26,6 +28,7 @@ import com.arialyy.aria.core.task.DownloadTask;
 import com.guch8017.myapplication.R;
 import com.guch8017.myapplication.database.DBUnitProfile;
 import com.guch8017.myapplication.database.DatabaseReflector;
+import com.guch8017.myapplication.unitDetailActivity.UnitDetailActivity;
 import com.guch8017.myapplication.utli.Constant;
 import com.guch8017.myapplication.utli.IO;
 import com.netease.hearttouch.brotlij.Brotli;
@@ -67,12 +70,32 @@ public class HomeFragment extends Fragment {
         IntentFilter filter = new IntentFilter();
         filter.addAction("com.guch8017.pcr.DATABASE_REFRESH");
         mReceiver = new DatabaseRefreshReceiver();
-        getActivity().registerReceiver(mReceiver,filter);
+        Activity activity = getActivity();
+        if(activity != null){
+            activity.registerReceiver(mReceiver,filter);
+        }
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         final ListView unitList = root.findViewById(R.id.unit_list);
         swipeRefreshLayout = root.findViewById(R.id.unit_list_refresh);
         mAdapter = new UnitListAdapter(getContext(), R.layout.unit_list_item, mUnitProfileList);
         unitList.setAdapter(mAdapter);
+        unitList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final TextView unitIDTextView = view.findViewById(R.id.unit_id);
+                final String unitIDText = unitIDTextView.getText().toString();
+                Integer unitIDObj = Integer.getInteger(unitIDText, -1);
+                int unitID;
+                if(unitIDObj != null){
+                    unitID = unitIDObj;
+                }else{
+                    unitID = -1;
+                }
+                Intent intent = new Intent(getContext(), UnitDetailActivity.class);
+                intent.putExtra("unit_id", unitID);
+                startActivity(intent);
+            }
+        });
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -100,7 +123,10 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDestroy(){
         super.onDestroy();
-        getActivity().unregisterReceiver(mReceiver);
+        Activity activity = getActivity();
+        if(activity != null){
+            activity.unregisterReceiver(mReceiver);
+        }
     }
 
     private void loadDatabase(Context context){
