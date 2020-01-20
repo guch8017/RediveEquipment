@@ -5,6 +5,7 @@ public class DBUnitProfile {
     public String unit_name;
     public String guild;
     public String race;
+    public String age;
     public String height;
     public String weight;
     public String birth_month;

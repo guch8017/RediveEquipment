@@ -60,6 +60,7 @@ public class HomeFragment extends Fragment {
     private ProgressDialog mProgressDialog;
     private String downloadTempFilePath;
     private static final String updaterTag = "Update Checker";
+    // TODO:改用设置界面存储版本数据
     private String currentVersion;
     private String databaseFilePath;
     private long downloadTaskID;

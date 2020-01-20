@@ -76,7 +76,7 @@ public class UnitDetailActivity extends AppCompatActivity {
     private void setFragments(){
         if(mTabLayout != null){
             List<Fragment> fragments = new ArrayList<>();
-            fragments.add(new UnitProfileFragment());
+            fragments.add(UnitProfileFragment.getInstance(unitProfile, unitData, unitComments));
             fragments.add(new UnitEquipmentFragment());
             UnitDetailFragmentAdapter adapter = new UnitDetailFragmentAdapter(getSupportFragmentManager());
             adapter.setFragments(fragments);
