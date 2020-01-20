@@ -9,14 +9,14 @@ public class IO {
         try {
             File file = new File(filePath);
             if(file.exists()){
-                Log.i("File Exists",filePath + " exists.");
+                Log.i("FileExists",filePath + " exists.");
                 return true;
             }else {
-                Log.i("File Exists",filePath + " doesn't exist.");
+                Log.i("FileExists",filePath + " doesn't exist.");
                 return false;
             }
         }catch (Exception e){
-            Log.i("File Exists",filePath + " doesn't exist.");
+            Log.i("FileExists",filePath + " doesn't exist.");
             return false;
         }
     }
@@ -25,7 +25,7 @@ public class IO {
         try{
             File file = new File(filePath);
             if(file.exists() && file.isFile()){
-                Log.i("Delete File", filePath + " exists. Trying to delete");
+                Log.i("DeleteFile", filePath + " exists. Trying to delete");
                 return file.delete();
             }
             else return false;

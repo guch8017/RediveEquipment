@@ -27,6 +27,7 @@ import com.arialyy.aria.core.Aria;
 import com.arialyy.aria.core.task.DownloadTask;
 import com.guch8017.myapplication.R;
 import com.guch8017.myapplication.database.DBUnitProfile;
+import com.guch8017.myapplication.database.Database;
 import com.guch8017.myapplication.database.DatabaseReflector;
 import com.guch8017.myapplication.unitDetailActivity.UnitDetailActivity;
 import com.guch8017.myapplication.util.Constant;
@@ -211,7 +212,8 @@ public class HomeFragment extends Fragment {
             Log.i(updaterTag, "数据库压缩文件下载完成");
             try {
                 if(IO.isFileExist(databaseFilePath)){
-                    IO.deleteFile(databaseFilePath);
+                    boolean status = IO.deleteFile(databaseFilePath);
+                    Log.i("HomeFragment","Delete Database :"+status);
                 }
                 Brotli.decompressFile(downloadTempFilePath, databaseFilePath);
                 Intent intent = new Intent("com.guch8017.pcr.DATABASE_REFRESH");
@@ -251,6 +253,7 @@ public class HomeFragment extends Fragment {
     private class DatabaseRefreshReceiver extends BroadcastReceiver{
         @Override
         public void onReceive(Context context, Intent intent){
+            Database.notifyDatabaseChange();
             loadDatabase(context);
             mAdapter.notifyDataSetChanged();
 

@@ -21,6 +21,10 @@ public class Database extends SQLiteOpenHelper {
         return sInstance;
     }
 
+    public static void notifyDatabaseChange(){
+        sInstance = null;
+    }
+
     @Override
     public void onCreate(SQLiteDatabase db){
 

@@ -15,14 +15,31 @@ import java.util.List;
 
 public class DatabaseReflector {
     private SQLiteDatabase db;
+    private Context mContext;
 
     public DatabaseReflector(Context context) throws SQLiteDiskIOException {
+        mContext = context;
         Database database = Database.getInstance(context);
         try{
             db = database.getReadableDatabase();
         }catch (Exception e){
             e.printStackTrace();
             throw new SQLiteDiskIOException("Error: Can't open database");
+        }
+    }
+
+    public void notisfyDatabaseChange(){
+        if(db != null){
+            db.close();
+        }
+        Database database = Database.getInstance(mContext);
+        db = database.getReadableDatabase();
+    }
+
+    @Override
+    public void finalize(){
+        if(db != null) {
+            db.close();
         }
     }
 

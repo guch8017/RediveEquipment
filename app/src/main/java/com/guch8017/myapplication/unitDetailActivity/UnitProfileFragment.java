@@ -42,8 +42,8 @@ public class UnitProfileFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState){
-        View root = inflater.inflate(R.layout.fragment_unit_profile, container, false);
-        final ListView listView = root.findViewById(R.id.unit_detail_profile);
+        View root = inflater.inflate(R.layout.fragment_unit_detail_list, container, false);
+        final ListView listView = root.findViewById(R.id.unit_detail_list);
         UnitProfileAdapter adapter = new UnitProfileAdapter(mContext, mProfile, mData, mComments);
         listView.setAdapter(adapter);
         return root;

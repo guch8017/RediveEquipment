@@ -11,9 +11,11 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.guch8017.myapplication.R;
+import com.guch8017.myapplication.database.DBUniqueEquip;
 import com.guch8017.myapplication.database.DBUnitComments;
 import com.guch8017.myapplication.database.DBUnitData;
 import com.guch8017.myapplication.database.DBUnitProfile;
+import com.guch8017.myapplication.database.DBUnitPromotion;
 import com.guch8017.myapplication.database.DatabaseReflector;
 
 import java.util.ArrayList;
@@ -29,6 +31,8 @@ public class UnitDetailActivity extends AppCompatActivity {
     private DBUnitProfile unitProfile;
     private List<DBUnitComments> unitComments;
     private DBUnitData unitData;
+    private List<DBUnitPromotion> unitPromotions;
+    private DBUniqueEquip uniqueEquip;
 
 
     @Override
@@ -57,6 +61,16 @@ public class UnitDetailActivity extends AppCompatActivity {
             Log.e(TAG, "无法从数据库中获取角色数据 ERR:DBUnitData is null");
             return;
         }else unitData = data.get(0);
+        unitPromotions = (List<DBUnitPromotion>)(Object) reflector.reflectClass(
+                DBUnitPromotion.class.getName(),"unit_promotion",
+                "unit_id="+unitID);
+        List<DBUniqueEquip> uData = (List<DBUniqueEquip>)(Object) reflector.reflectClass(
+                DBUniqueEquip.class.getName(), "unit_unique_equip",
+                "unit_id="+unitID);
+        if(uData == null || uData.size() == 0){
+            Log.i(TAG, "当前角色无专武数据");
+            uniqueEquip = null;
+        }else uniqueEquip = uData.get(0);
         setContentView(R.layout.activity_unit);
         mTabLayout = findViewById(R.id.unit_tab);
         mViewPager = findViewById(R.id.unit_pager);
@@ -77,7 +91,7 @@ public class UnitDetailActivity extends AppCompatActivity {
         if(mTabLayout != null){
             List<Fragment> fragments = new ArrayList<>();
             fragments.add(UnitProfileFragment.getInstance(unitProfile, unitData, unitComments));
-            fragments.add(new UnitEquipmentFragment());
+            fragments.add(UnitEquipmentFragment.getInstance(unitPromotions, uniqueEquip));
             UnitDetailFragmentAdapter adapter = new UnitDetailFragmentAdapter(getSupportFragmentManager());
             adapter.setFragments(fragments);
             mViewPager.setAdapter(adapter);
