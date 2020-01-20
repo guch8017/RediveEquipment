@@ -84,14 +84,11 @@ public class HomeFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final TextView unitIDTextView = view.findViewById(R.id.unit_id);
                 final String unitIDText = unitIDTextView.getText().toString();
-                Integer unitIDObj = Integer.getInteger(unitIDText, -1);
-                int unitID;
-                if(unitIDObj != null){
-                    unitID = unitIDObj;
-                }else{
-                    unitID = -1;
-                }
+
+                int unitID = Integer.valueOf(unitIDText);
+
                 Intent intent = new Intent(getContext(), UnitDetailActivity.class);
+                Log.i("Unit List Fragment", "Intent值为 unit_id = "+unitID);
                 intent.putExtra("unit_id", unitID);
                 startActivity(intent);
             }

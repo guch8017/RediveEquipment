@@ -18,9 +18,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 
-import com.arialyy.annotations.Download;
-import com.arialyy.aria.core.Aria;
-import com.arialyy.aria.core.task.DownloadTask;
 import com.guch8017.myapplication.R;
 import com.guch8017.myapplication.utli.Constant;
 import com.guch8017.myapplication.utli.IO;

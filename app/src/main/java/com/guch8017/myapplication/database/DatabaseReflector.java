@@ -54,8 +54,12 @@ public class DatabaseReflector {
                         case "class java.lang.String":
                             field.set(classObject, cursor.getString(cursor.getColumnIndex(field.getName())));
                             break;
+                        case "double":
+                            field.set(classObject, cursor.getDouble(cursor.getColumnIndex(field.getName())));
+                            break;
                         default:
                             Log.w("Reflector","Unknown Field generic type: " + field.getGenericType());
+                            break;
                     }
                 }
                 objects.add(classObject);
