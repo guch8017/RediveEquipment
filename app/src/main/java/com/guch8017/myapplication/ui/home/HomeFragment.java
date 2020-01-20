@@ -259,14 +259,14 @@ public class HomeFragment extends Fragment {
                 viewHolder = new UnitViewHolder();
                 viewHolder.unit_id = convertView.findViewById(R.id.unit_id);
                 viewHolder.unit_name = convertView.findViewById(R.id.unit_name);
-                viewHolder.unit_nickname = convertView.findViewById(R.id.unit_nickname);
+                viewHolder.catch_copy = convertView.findViewById(R.id.unit_nickname);
                 viewHolder.unit_icon = convertView.findViewById(R.id.unit_image);
                 convertView.setTag(viewHolder);
             }else{
                 viewHolder = (UnitViewHolder) convertView.getTag();
             }
             viewHolder.unit_name.setText(profile.unit_name);
-            viewHolder.unit_nickname.setText(profile.voice);
+            viewHolder.catch_copy.setText(profile.catch_copy);
             viewHolder.unit_id.setText(String.valueOf(profile.unit_id));
 
             imageLoader.displayImage(Constant.unitImageUrl(profile.unit_id, 3),
@@ -278,7 +278,7 @@ public class HomeFragment extends Fragment {
         private class UnitViewHolder{
             TextView unit_id;
             TextView unit_name;
-            TextView unit_nickname;
+            TextView catch_copy;
             ImageView unit_icon;
         }
 
