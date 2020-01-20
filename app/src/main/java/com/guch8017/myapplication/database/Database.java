@@ -8,9 +8,17 @@ import android.util.Log;
 public class Database extends SQLiteOpenHelper {
     // DB ReadOnly !
     static private String db_name = "database.db";
+    static private Database sInstance;
 
-    public Database(Context context){
+    private Database(Context context){
         super(context, context.getDatabasePath(db_name).getAbsolutePath(), null, 1);
+    }
+
+    public static Database getInstance(Context context){
+        if(sInstance == null){
+            sInstance = new Database(context.getApplicationContext());
+        }
+        return sInstance;
     }
 
     @Override

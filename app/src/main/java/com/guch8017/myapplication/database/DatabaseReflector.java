@@ -17,7 +17,7 @@ public class DatabaseReflector {
     private SQLiteDatabase db;
 
     public DatabaseReflector(Context context) throws SQLiteDiskIOException {
-        Database database = new Database(context);
+        Database database = Database.getInstance(context);
         try{
             db = database.getReadableDatabase();
         }catch (Exception e){
