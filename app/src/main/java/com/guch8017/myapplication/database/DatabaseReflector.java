@@ -36,12 +36,6 @@ public class DatabaseReflector {
         db = database.getReadableDatabase();
     }
 
-    @Override
-    public void finalize(){
-        if(db != null) {
-            db.close();
-        }
-    }
 
     @Nullable
     public List<Object> reflectClass(@NonNull String className, @NonNull String tableName){
