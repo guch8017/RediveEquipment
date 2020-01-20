@@ -1,6 +1,5 @@
 package com.guch8017.myapplication.ui.home;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
@@ -17,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -29,8 +29,8 @@ import com.guch8017.myapplication.R;
 import com.guch8017.myapplication.database.DBUnitProfile;
 import com.guch8017.myapplication.database.DatabaseReflector;
 import com.guch8017.myapplication.unitDetailActivity.UnitDetailActivity;
-import com.guch8017.myapplication.utli.Constant;
-import com.guch8017.myapplication.utli.IO;
+import com.guch8017.myapplication.util.Constant;
+import com.guch8017.myapplication.util.IO;
 import com.netease.hearttouch.brotlij.Brotli;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -43,6 +43,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -62,6 +63,7 @@ public class HomeFragment extends Fragment {
     private String currentVersion;
     private String databaseFilePath;
     private long downloadTaskID;
+    private Context mContext;
     androidx.swiperefreshlayout.widget.SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
@@ -70,10 +72,8 @@ public class HomeFragment extends Fragment {
         IntentFilter filter = new IntentFilter();
         filter.addAction("com.guch8017.pcr.DATABASE_REFRESH");
         mReceiver = new DatabaseRefreshReceiver();
-        Activity activity = getActivity();
-        if(activity != null){
-            activity.registerReceiver(mReceiver,filter);
-        }
+        mContext.registerReceiver(mReceiver,filter);
+
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         final ListView unitList = root.findViewById(R.id.unit_list);
         swipeRefreshLayout = root.findViewById(R.id.unit_list_refresh);
@@ -93,6 +93,7 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -112,6 +113,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onAttach(Context context){
         super.onAttach(context);
+        mContext = context;
         loadDatabase(context);
         downloadTempFilePath = context.getFilesDir().toString() + "/temp";
         databaseFilePath = context.getDatabasePath("database.db").toString();
@@ -120,23 +122,29 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDestroy(){
         super.onDestroy();
-        Activity activity = getActivity();
-        if(activity != null){
-            activity.unregisterReceiver(mReceiver);
-        }
+
+        mContext.unregisterReceiver(mReceiver);
+        mContext = null;
     }
 
     private void loadDatabase(Context context){
+        Object obj = null;
+        if(mUnitProfileList == null){
+            mUnitProfileList = new ArrayList<>();
+        }
         if(!IO.isFileExist(context.getDatabasePath("database.db").getAbsolutePath())){
             Log.i("角色列表读取器","游戏数据库不存在");
         }
-        DatabaseReflector reflector = new DatabaseReflector(context);
-        Object obj = reflector.reflectClass(DBUnitProfile.class.getName(),"unit_profile");
+        else {
+            DatabaseReflector reflector = new DatabaseReflector(context);
+            obj = reflector.reflectClass(DBUnitProfile.class.getName(), "unit_profile");
+        }
         if(obj != null){
-            mUnitProfileList = (List<DBUnitProfile>)obj;
+            mUnitProfileList.clear();
+            mUnitProfileList.addAll((List<DBUnitProfile>)obj);
         }else {
             Log.e("角色列表读取器","无法获取列表信息，数据库可能损坏");
-            mUnitProfileList = null;
+            mUnitProfileList.clear();
         }
     }
 
@@ -162,8 +170,9 @@ public class HomeFragment extends Fragment {
         if(mProgressDialog != null){
             mProgressDialog.dismiss();
         }
+        Aria.download(this).load(downloadTaskID).removeRecord();
         if(downloadTask == 1){
-            Log.i(updaterTag, "Task 1 finished. Start checking ");
+            Log.i(updaterTag, "版本数据下载完成");
             try{
                 File file = new File(downloadTempFilePath);
                 InputStream inputStream = new FileInputStream(file);
@@ -179,8 +188,8 @@ public class HomeFragment extends Fragment {
                 Log.i(updaterTag, version);
 
                 if(!version.equals(currentVersion)){
-                    Log.d(updaterTag, "Current version is: " + currentVersion +
-                            " Target version is: " + version + "Start download database.");
+                    Log.d(updaterTag, "当前数据库版本: " + currentVersion +
+                            " 在线数据库版本: " + version + "开始下载数据库文件");
                     downloadTask = 2;
                     mProgressDialog = new ProgressDialog(getContext());
                     mProgressDialog.setTitle("正在下载数据库");
@@ -190,14 +199,16 @@ public class HomeFragment extends Fragment {
                     downloadTaskID = Aria.download(this).load(Constant.databaseUrl).
                             ignoreFilePathOccupy().
                             setFilePath(downloadTempFilePath).create();
+                }else {
+                    Log.d(updaterTag, "当前数据库版本为最新");
+                    Toast.makeText(mContext,"数据库已为最新版", Toast.LENGTH_SHORT).show();
                 }
-
             }catch (Exception e){
                 swipeRefreshLayout.setRefreshing(false);
-                Log.i(updaterTag, "JSON Decode Error");
+                Log.i(updaterTag, "JSON解码失败 ERR:JSON_DECODE");
             }
         }else if(downloadTask == 2){
-            Log.i(updaterTag, "Task 2 finished. Start decompress");
+            Log.i(updaterTag, "数据库压缩文件下载完成");
             try {
                 if(IO.isFileExist(databaseFilePath)){
                     IO.deleteFile(databaseFilePath);
@@ -205,16 +216,16 @@ public class HomeFragment extends Fragment {
                 Brotli.decompressFile(downloadTempFilePath, databaseFilePath);
                 Intent intent = new Intent("com.guch8017.pcr.DATABASE_REFRESH");
                 swipeRefreshLayout.setRefreshing(false);
-                getActivity().sendBroadcast(intent);
+                mContext.sendBroadcast(intent);
             }catch (Exception e){
                 e.printStackTrace();
                 swipeRefreshLayout.setRefreshing(false);
-                Log.e(updaterTag, "Error while decompressing brotli file");
+                Log.e(updaterTag, "解压缩Brotli文件失败 ERR:DECOMPRESS_BROTLI");
             }
 
 
         }else {
-            Log.e(updaterTag,"Unknown task type ID: " + downloadTask);
+            Log.e(updaterTag,"未知状态码 ERR:UNKNOWN_STATUS_CODE:" + downloadTask);
         }
     }
 
@@ -242,15 +253,18 @@ public class HomeFragment extends Fragment {
         public void onReceive(Context context, Intent intent){
             loadDatabase(context);
             mAdapter.notifyDataSetChanged();
+
         }
     }
 
     class UnitListAdapter extends ArrayAdapter<DBUnitProfile> {
         private int resourceId;
-        public UnitListAdapter(Context context, int resourceID, List<DBUnitProfile> profiles){
+        UnitListAdapter(Context context, int resourceID, List<DBUnitProfile> profiles){
             super(context,resourceID, profiles);
             resourceId = resourceID;
         }
+
+
         @NonNull @Override public View getView(int position, View convertView, ViewGroup parent){
             UnitViewHolder viewHolder;
             DBUnitProfile profile = getItem(position);
@@ -273,8 +287,6 @@ public class HomeFragment extends Fragment {
                     viewHolder.unit_icon, displayImageOption);
             return convertView;
         }
-
-
         private class UnitViewHolder{
             TextView unit_id;
             TextView unit_name;

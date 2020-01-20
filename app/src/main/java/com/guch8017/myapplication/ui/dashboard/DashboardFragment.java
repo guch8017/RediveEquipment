@@ -1,11 +1,6 @@
 package com.guch8017.myapplication.ui.dashboard;
 
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,19 +14,6 @@ import androidx.fragment.app.Fragment;
 
 
 import com.guch8017.myapplication.R;
-import com.guch8017.myapplication.utli.Constant;
-import com.guch8017.myapplication.utli.IO;
-import com.netease.hearttouch.brotlij.Brotli;
-
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-
 
 
 @SuppressWarnings("WeakerAccess")

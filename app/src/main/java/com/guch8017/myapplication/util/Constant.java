@@ -1,4 +1,4 @@
-package com.guch8017.myapplication.utli;
+package com.guch8017.myapplication.util;
 
 public class Constant {
     public static final String equipImageUrl = "https://redive.estertion.win/icon/equipment/%d.webp";

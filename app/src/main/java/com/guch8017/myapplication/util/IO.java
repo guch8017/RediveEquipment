@@ -1,4 +1,4 @@
-package com.guch8017.myapplication.utli;
+package com.guch8017.myapplication.util;
 
 import android.util.Log;
 
