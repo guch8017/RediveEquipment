@@ -64,7 +64,7 @@ public class HomeFragment extends Fragment {
     private String databaseFilePath;
     private long downloadTaskID;
     private Context mContext;
-    androidx.swiperefreshlayout.widget.SwipeRefreshLayout swipeRefreshLayout;
+    private androidx.swiperefreshlayout.widget.SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -170,7 +170,6 @@ public class HomeFragment extends Fragment {
         if(mProgressDialog != null){
             mProgressDialog.dismiss();
         }
-        Aria.download(this).load(downloadTaskID).removeRecord();
         if(downloadTask == 1){
             Log.i(updaterTag, "版本数据下载完成");
             try{
