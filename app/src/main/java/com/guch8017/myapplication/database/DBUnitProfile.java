@@ -1,6 +1,7 @@
 package com.guch8017.myapplication.database;
 
 public class DBUnitProfile {
+    public static final String tableName = "unit_profile";
     public int unit_id;
     public String unit_name;
     public String guild;

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RediveEquipment</string>
+    <string name="atk">物理攻击</string>
+    <string name="def">物理防御</string>
+    <string name="hp">血量</string>
+    <string name="magic_critical">魔法暴击</string>
+    <string name="magic_def">魔法防御</string>
+    <string name="magic_str">魔法攻击</string>
+    <string name="physical_critical">物理暴击</string>
+    <string name="wave_hp_recovery">HP自动回复</string>
+    <string name="physical_penetrate">物理穿透</string>
+    <string name="wave_energy_recovery">TP自动回复</string>
+    <string name="magic_penetrate">魔法穿透</string>
+    <string name="enable_donation">可请求装备</string>
+    <string name="dodge">回避</string>
+    <string name="accuracy">命中</string>
+    <string name="energy_recovery_rate">TP 上升</string>
+    <string name="energy_reduce_rate">TP 下降减轻</string>
+    <string name="hp_recovery_rate">HP 回复量上升</string>
+    <string name="life_steal">HP 吸收</string>
+    <string name="sale_price">出售价格</string>
+    <string name="title_dashboard">装备</string>
+    <string name="title_home">角色</string>
+    <string name="title_notifications">计算器</string>
+</resources>

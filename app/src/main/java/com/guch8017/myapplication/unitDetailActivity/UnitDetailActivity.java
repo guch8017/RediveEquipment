@@ -34,7 +34,7 @@ public class UnitDetailActivity extends AppCompatActivity {
     private List<DBUnitPromotion> unitPromotions;
     private DBUniqueEquip uniqueEquip;
 
-
+    @SuppressWarnings("unchecked")
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -45,27 +45,27 @@ public class UnitDetailActivity extends AppCompatActivity {
         }
         DatabaseReflector reflector = new DatabaseReflector(this);
         List<DBUnitProfile> profiles = (List<DBUnitProfile>)(Object) reflector.reflectClass(
-                DBUnitProfile.class.getName(), "unit_profile",
+                DBUnitProfile.class.getName(), DBUnitProfile.tableName,
                 "unit_id="+unitID);
         if(profiles == null || profiles.size() == 0){
             Log.e(TAG, "无法从数据库中获取角色数据 ERR:DBUnitProfile is null");
             return;
         }else unitProfile = profiles.get(0);
         unitComments = (List<DBUnitComments>)(Object) reflector.reflectClass(
-                DBUnitComments.class.getName(),"unit_comments",
+                DBUnitComments.class.getName(),DBUnitComments.tableName,
                 "unit_id="+unitID);
         List<DBUnitData> data = (List<DBUnitData>)(Object) reflector.reflectClass(
-                DBUnitData.class.getName(), "unit_data",
+                DBUnitData.class.getName(), DBUnitData.tableName,
                 "unit_id="+unitID);
         if(data == null || data.size() == 0){
             Log.e(TAG, "无法从数据库中获取角色数据 ERR:DBUnitData is null");
             return;
         }else unitData = data.get(0);
         unitPromotions = (List<DBUnitPromotion>)(Object) reflector.reflectClass(
-                DBUnitPromotion.class.getName(),"unit_promotion",
+                DBUnitPromotion.class.getName(),DBUnitPromotion.tableName,
                 "unit_id="+unitID);
         List<DBUniqueEquip> uData = (List<DBUniqueEquip>)(Object) reflector.reflectClass(
-                DBUniqueEquip.class.getName(), "unit_unique_equip",
+                DBUniqueEquip.class.getName(), DBUniqueEquip.tableName,
                 "unit_id="+unitID);
         if(uData == null || uData.size() == 0){
             Log.i(TAG, "当前角色无专武数据");

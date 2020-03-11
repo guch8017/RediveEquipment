@@ -22,7 +22,6 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.imageaware.ImageViewAware;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UnitEquipmentFragment extends Fragment {
@@ -115,6 +114,7 @@ public class UnitEquipmentFragment extends Fragment {
                         public void onClick(View v) {
                             Intent intent = new Intent(getContext(), EquipmentActivity.class);
                             intent.putExtra("equipment_id", unit_promotion.equip_slot_1);
+                            intent.putExtra("isUnique",false);
                             startActivity(intent);
                         }
                     });
@@ -126,6 +126,7 @@ public class UnitEquipmentFragment extends Fragment {
                         public void onClick(View v) {
                             Intent intent = new Intent(getContext(), EquipmentActivity.class);
                             intent.putExtra("equipment_id", unit_promotion.equip_slot_2);
+                            intent.putExtra("isUnique",false);
                             startActivity(intent);
                         }
                     });
@@ -137,6 +138,7 @@ public class UnitEquipmentFragment extends Fragment {
                         public void onClick(View v) {
                             Intent intent = new Intent(getContext(), EquipmentActivity.class);
                             intent.putExtra("equipment_id", unit_promotion.equip_slot_3);
+                            intent.putExtra("isUnique",false);
                             startActivity(intent);
                         }
                     });
@@ -148,6 +150,7 @@ public class UnitEquipmentFragment extends Fragment {
                         public void onClick(View v) {
                             Intent intent = new Intent(getContext(), EquipmentActivity.class);
                             intent.putExtra("equipment_id", unit_promotion.equip_slot_4);
+                            intent.putExtra("isUnique",false);
                             startActivity(intent);
                         }
                     });
@@ -159,6 +162,7 @@ public class UnitEquipmentFragment extends Fragment {
                         public void onClick(View v) {
                             Intent intent = new Intent(getContext(), EquipmentActivity.class);
                             intent.putExtra("equipment_id", unit_promotion.equip_slot_5);
+                            intent.putExtra("isUnique",false);
                             startActivity(intent);
                         }
                     });
@@ -170,6 +174,7 @@ public class UnitEquipmentFragment extends Fragment {
                         public void onClick(View v) {
                             Intent intent = new Intent(getContext(), EquipmentActivity.class);
                             intent.putExtra("equipment_id", unit_promotion.equip_slot_6);
+                            intent.putExtra("isUnique",false);
                             startActivity(intent);
                         }
                     });
@@ -196,6 +201,15 @@ public class UnitEquipmentFragment extends Fragment {
                 viewHolder.iv = view.findViewById(R.id.unit_equipment_list_image_1);
                 view.setTag(viewHolder);
                 viewHolder.te.setText("专属装备");
+                viewHolder.iv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(mContext, EquipmentActivity.class);
+                        intent.putExtra("equipment_id", uniqueEquip.equip_id);
+                        intent.putExtra("isUnique",true);
+                        startActivity(intent);
+                    }
+                });
                 ImageLoader.getInstance().displayImage("https://redive.estertion.win/icon/equipment/" + (uniqueEquip.equip_id) + ".webp",
                         new ImageViewAware(viewHolder.iv, false), displayImageOptions);
                 return view;

@@ -1,6 +1,7 @@
 package com.guch8017.myapplication.database;
 
 public class DBUnitData {
+    public static final String tableName = "unit_data";
     public int is_limited;
     public int rarity;
     public int motion_type;

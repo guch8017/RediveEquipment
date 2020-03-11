@@ -1,6 +1,27 @@
 <resources>
     <string name="app_name">RediveEquipment</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">Character</string>
+    <string name="title_dashboard">Equipment</string>
+    <string name="title_notifications">Caculator</string>
+
+    <!-- 属性 -->
+    <string name="atk">Physical Attack</string>
+    <string name="def">Physical Defence</string>
+    <string name="hp">HP</string>
+    <string name="magic_str">Magic Attack</string>
+    <string name="magic_def">Magic Defence</string>
+    <string name="physical_critical">Physical Critical</string>
+    <string name="magic_critical">Magic Critical</string>
+    <string name="wave_hp_recovery">Wave HP Recovery</string>
+    <string name="wave_energy_recovery">Wave Energy Recovery</string>
+    <string name="dodge">Dodge</string>
+    <string name="physical_penetrate">Physical Penetrate</string>
+    <string name="magic_penetrate">Magic Penetrate</string>
+    <string name="enable_donation">Enable Donation</string>
+    <string name="accuracy">Accuracy</string>
+    <string name="energy_reduce_rate">Energy Reduce Rate</string>
+    <string name="energy_recovery_rate">Energy Recovery Rate</string>
+    <string name="hp_recovery_rate">HP Recovery Rate</string>
+    <string name="life_steal">Life Steal</string>
+    <string name="sale_price">Sale Price</string>
 </resources>

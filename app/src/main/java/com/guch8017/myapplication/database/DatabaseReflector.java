@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,20 +58,22 @@ public class DatabaseReflector {
             Cursor cursor = db.rawQuery(sql, new String[]{});
             while (cursor.moveToNext()){
                 Object classObject = reflectClass.newInstance();
-                for(Field field:fields){
-                    switch(field.getGenericType().toString()){
-                        case "int":
-                            field.set(classObject, cursor.getInt(cursor.getColumnIndex(field.getName())));
-                            break;
-                        case "class java.lang.String":
-                            field.set(classObject, cursor.getString(cursor.getColumnIndex(field.getName())));
-                            break;
-                        case "double":
-                            field.set(classObject, cursor.getDouble(cursor.getColumnIndex(field.getName())));
-                            break;
-                        default:
-                            Log.w("Reflector","Unknown Field generic type: " + field.getGenericType());
-                            break;
+                for(Field field:fields) {
+                    if (!Modifier.isStatic(field.getModifiers())) {
+                        switch (field.getGenericType().toString()) {
+                            case "int":
+                                field.set(classObject, cursor.getInt(cursor.getColumnIndex(field.getName())));
+                                break;
+                            case "class java.lang.String":
+                                field.set(classObject, cursor.getString(cursor.getColumnIndex(field.getName())));
+                                break;
+                            case "double":
+                                field.set(classObject, cursor.getDouble(cursor.getColumnIndex(field.getName())));
+                                break;
+                            default:
+                                Log.w("Reflector", "Unknown Field generic type: " + field.getGenericType());
+                                break;
+                        }
                     }
                 }
                 objects.add(classObject);

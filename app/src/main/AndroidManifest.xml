@@ -24,6 +24,7 @@
         </activity>
         <activity android:name=".unitDetailActivity.UnitDetailActivity"/>
         <activity android:name=".equipmentActivity.EquipmentActivity"/>
+        <activity android:name=".uniqueEquipActivity.UniqueEquipActivity" />
     </application>
 
 </manifest>

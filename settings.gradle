@@ -1,2 +1,2 @@
-include ':app','brotlij'
+include ':app'
 rootProject.name='RediveEquipment'

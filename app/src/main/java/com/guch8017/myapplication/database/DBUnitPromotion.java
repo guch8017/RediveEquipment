@@ -1,6 +1,7 @@
 package com.guch8017.myapplication.database;
 
 public class DBUnitPromotion {
+    public static final String tableName = "unit_promotion";
     public int promotion_level;
     public int equip_slot_1;
     public int equip_slot_2;

@@ -30,9 +30,10 @@ import com.guch8017.myapplication.database.DBUnitProfile;
 import com.guch8017.myapplication.database.Database;
 import com.guch8017.myapplication.database.DatabaseReflector;
 import com.guch8017.myapplication.unitDetailActivity.UnitDetailActivity;
+import com.guch8017.myapplication.util.BrotliUtils;
 import com.guch8017.myapplication.util.Constant;
 import com.guch8017.myapplication.util.IO;
-import com.netease.hearttouch.brotlij.Brotli;
+
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -165,6 +166,7 @@ public class HomeFragment extends Fragment {
         }
         downloadTaskID = Aria.download(this).load(Constant.databaseVersionUrl).
                 ignoreFilePathOccupy().
+                ignoreCheckPermissions().
                 setFilePath(downloadTempFilePath).create();
     }
 
@@ -199,6 +201,7 @@ public class HomeFragment extends Fragment {
                     mProgressDialog.show();
                     downloadTaskID = Aria.download(this).load(Constant.databaseUrl).
                             ignoreFilePathOccupy().
+                            ignoreCheckPermissions().
                             setFilePath(downloadTempFilePath).create();
                 }else {
                     Log.d(updaterTag, "当前数据库版本为最新");
@@ -215,7 +218,7 @@ public class HomeFragment extends Fragment {
                     boolean status = IO.deleteFile(databaseFilePath);
                     Log.i("HomeFragment","Delete Database :"+status);
                 }
-                Brotli.decompressFile(downloadTempFilePath, databaseFilePath);
+                BrotliUtils.deCompress(downloadTempFilePath, databaseFilePath);
                 Intent intent = new Intent("com.guch8017.pcr.DATABASE_REFRESH");
                 swipeRefreshLayout.setRefreshing(false);
                 mContext.sendBroadcast(intent);
@@ -249,6 +252,7 @@ public class HomeFragment extends Fragment {
         }
 
     }
+
 
     private class DatabaseRefreshReceiver extends BroadcastReceiver{
         @Override

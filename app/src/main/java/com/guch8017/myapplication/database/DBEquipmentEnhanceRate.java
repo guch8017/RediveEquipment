@@ -1,15 +1,8 @@
 package com.guch8017.myapplication.database;
 
-public class DBEquipmentData {
-    public static final String tableNameUnique = "unique_equipment_data";
-    public static final String tableName = "equipment_data";
-    public String equipment_name;
-    public String description;
-    public int promotion_level;
-    public int craft_flg;
-    public int equipment_enhance_point;
-    public int sale_price;
-    public int require_level;
+public class DBEquipmentEnhanceRate {
+    public static final String tableName = "equipment_enhance_rate";
+    public static final String tableNameUnique = "unique_equipment_enhance_rate";
     public double hp;
     public double atk;
     public double magic_str;
