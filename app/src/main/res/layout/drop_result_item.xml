@@ -2,25 +2,47 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:id="@+id/mapName"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="25sp"
+            android:layout_marginBottom="5sp"
+            android:layout_marginStart="10sp"
+            android:id="@+id/mapName"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="#666"
+            android:layout_marginStart="10sp"
+            android:layout_marginBottom="5sp"
+
+            android:textAlignment="textEnd"
+            android:id="@+id/mapType"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp">
         <LinearLayout
             android:orientation="vertical" android:layout_width="0sp"
             android:layout_weight="1"
             android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="60sp"
+                android:layout_width="match_parent"
                 android:layout_height="60sp"
+                android:gravity="center"
                 android:id="@+id/drop_item_img1"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:id="@+id/drop_item_odd1"/>
         </LinearLayout>
         <LinearLayout
@@ -28,12 +50,14 @@
             android:layout_weight="1"
             android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="60sp"
+                android:layout_width="match_parent"
                 android:layout_height="60sp"
+                android:gravity="center"
                 android:id="@+id/drop_item_img2"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:id="@+id/drop_item_odd2"/>
         </LinearLayout>
         <LinearLayout
@@ -41,12 +65,14 @@
             android:layout_weight="1"
             android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="60sp"
+                android:layout_width="match_parent"
                 android:layout_height="60sp"
+                android:gravity="center"
                 android:id="@+id/drop_item_img3"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:id="@+id/drop_item_odd3"/>
         </LinearLayout>
         <LinearLayout
@@ -54,12 +80,14 @@
             android:layout_weight="1"
             android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="60sp"
+                android:layout_width="match_parent"
                 android:layout_height="60sp"
+                android:gravity="center"
                 android:id="@+id/drop_item_img4"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:id="@+id/drop_item_odd4"/>
         </LinearLayout>
         <LinearLayout
@@ -67,30 +95,36 @@
             android:layout_weight="1"
             android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="60sp"
+                android:layout_width="match_parent"
                 android:layout_height="60sp"
+                android:gravity="center"
                 android:id="@+id/drop_item_img5"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:id="@+id/drop_item_odd5"/>
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp">
         <LinearLayout
             android:orientation="vertical" android:layout_width="0sp"
             android:layout_weight="1"
             android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="60sp"
+                android:layout_width="match_parent"
                 android:layout_height="60sp"
+                android:gravity="center"
                 android:id="@+id/drop_item_img6"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:id="@+id/drop_item_odd6"/>
         </LinearLayout>
         <LinearLayout
@@ -98,12 +132,14 @@
             android:layout_weight="1"
             android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="60sp"
+                android:layout_width="match_parent"
                 android:layout_height="60sp"
+                android:gravity="center"
                 android:id="@+id/drop_item_img7"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:id="@+id/drop_item_odd7"/>
         </LinearLayout>
         <LinearLayout
@@ -111,12 +147,14 @@
             android:layout_weight="1"
             android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="60sp"
+                android:layout_width="match_parent"
                 android:layout_height="60sp"
+                android:gravity="center"
                 android:id="@+id/drop_item_img8"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:id="@+id/drop_item_odd8"/>
         </LinearLayout>
         <LinearLayout
@@ -124,12 +162,14 @@
             android:layout_weight="1"
             android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="60sp"
+                android:layout_width="match_parent"
                 android:layout_height="60sp"
+                android:gravity="center"
                 android:id="@+id/drop_item_img9"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:id="@+id/drop_item_odd9"/>
         </LinearLayout>
         <LinearLayout
@@ -137,30 +177,36 @@
             android:layout_weight="1"
             android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="60sp"
+                android:layout_width="match_parent"
                 android:layout_height="60sp"
+                android:gravity="center"
                 android:id="@+id/drop_item_img10"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:id="@+id/drop_item_odd10"/>
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp">
         <LinearLayout
             android:orientation="vertical" android:layout_width="0sp"
             android:layout_weight="1"
             android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="60sp"
+                android:layout_width="match_parent"
                 android:layout_height="60sp"
+                android:gravity="center"
                 android:id="@+id/drop_item_img11"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:id="@+id/drop_item_odd11"/>
         </LinearLayout>
         <LinearLayout
@@ -168,12 +214,14 @@
             android:layout_weight="1"
             android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="60sp"
+                android:layout_width="match_parent"
                 android:layout_height="60sp"
+                android:gravity="center"
                 android:id="@+id/drop_item_img12"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:id="@+id/drop_item_odd12"/>
         </LinearLayout>
         <LinearLayout
@@ -181,12 +229,14 @@
             android:layout_weight="1"
             android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="60sp"
+                android:layout_width="match_parent"
                 android:layout_height="60sp"
+                android:gravity="center"
                 android:id="@+id/drop_item_img13"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:id="@+id/drop_item_odd13"/>
         </LinearLayout>
         <LinearLayout
@@ -194,12 +244,14 @@
             android:layout_weight="1"
             android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="60sp"
+                android:layout_width="match_parent"
                 android:layout_height="60sp"
+                android:gravity="center"
                 android:id="@+id/drop_item_img14"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:id="@+id/drop_item_odd14"/>
         </LinearLayout>
         <LinearLayout
@@ -207,12 +259,14 @@
             android:layout_weight="1"
             android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="60sp"
+                android:layout_width="match_parent"
                 android:layout_height="60sp"
+                android:gravity="center"
                 android:id="@+id/drop_item_img15"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:id="@+id/drop_item_odd15"/>
         </LinearLayout>
     </LinearLayout>

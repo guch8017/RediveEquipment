@@ -68,7 +68,7 @@ public class DBQuest {
         }
     }
 
-    enum AreaType{
+    public enum AreaType{
         normal,
         hard,
         veryhard,

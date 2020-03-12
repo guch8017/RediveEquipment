@@ -111,6 +111,7 @@ public class DashboardFragment extends Fragment {
                 img.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        // TODO: 改为装备详情页
                         searchAndStartActivity(equipmentId);
                     }
                 });

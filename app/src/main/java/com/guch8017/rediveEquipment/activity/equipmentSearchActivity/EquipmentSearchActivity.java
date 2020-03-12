@@ -31,6 +31,7 @@ import com.guch8017.rediveEquipment.mainFragmentUI.home.HomeFragment;
 import com.guch8017.rediveEquipment.util.Constant;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.imageaware.ImageViewAware;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +94,7 @@ public class EquipmentSearchActivity extends AppCompatActivity {
     private class FinishLoadingReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent){
-            //mList.setAdapter(new ListAdapter(quests));
+            mList.setAdapter(new ListAdapter(quests));
         }
     }
 
@@ -121,17 +122,51 @@ public class EquipmentSearchActivity extends AppCompatActivity {
 
         @Override
         public View getView(final int position, View convertView, ViewGroup parent){
-            return null;
+            DBQuest quest = quests.get(position);
+            int i = 1;
+            View view = LayoutInflater.from(EquipmentSearchActivity.this).inflate(R.layout.drop_result_item, parent, false);
+            TextView map = view.findViewById(R.id.mapName);
+            TextView type = view.findViewById(R.id.mapType);
+            map.setText(quest.quest_name);
+            switch (quest.getAreaType()){
+                case hard:
+                    type.setText("Hard");
+                    break;
+                case normal:
+                    type.setText("Normal");
+                    break;
+                case veryhard:
+                    type.setText("Very Hard");
+                    break;
+                case exploration:
+                    type.setText("探索");
+                    break;
+                case shrine:
+                    type.setText("圣迹调查");
+                    break;
+                case temple:
+                    type.setText("神殿调查");
+                    break;
+                case unknown:
+                    type.setText("未知地图类型");
+                    break;
+            }
+            for(DBWave.Reward reward : quest.rewards){
+                int imgViewId = getResources().getIdentifier("drop_item_img" + i,"id",EquipmentSearchActivity.this.getPackageName());
+                int oddViewId = getResources().getIdentifier("drop_item_odd" + i,"id",EquipmentSearchActivity.this.getPackageName());
+                ImageView img = view.findViewById(imgViewId);
+                TextView text = view.findViewById(oddViewId);
+                text.setText(String.valueOf(reward.odds) + "%");
+                ImageLoader.getInstance().displayImage(Constant.equipImageUrl(reward.rewardID),
+                        new ImageViewAware(img, false), Constant.displayImageOption);
+                i += 1;
+            }
+            return view;
         }
 
         @Override
         public boolean isEnabled(int position){
             return false;
-        }
-
-        private class ListViewHolder{
-            TextView mapName;
-
         }
     }
 }
