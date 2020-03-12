@@ -1,4 +1,4 @@
-package com.guch8017.myapplication.ui.home;
+package com.guch8017.myapplication.mainFragmentUI.home;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -26,10 +26,10 @@ import com.arialyy.annotations.Download;
 import com.arialyy.aria.core.Aria;
 import com.arialyy.aria.core.task.DownloadTask;
 import com.guch8017.myapplication.R;
-import com.guch8017.myapplication.database.DBUnitProfile;
+import com.guch8017.myapplication.database.module.DBUnitProfile;
 import com.guch8017.myapplication.database.Database;
 import com.guch8017.myapplication.database.DatabaseReflector;
-import com.guch8017.myapplication.unitDetailActivity.UnitDetailActivity;
+import com.guch8017.myapplication.activity.unitDetailActivity.UnitDetailActivity;
 import com.guch8017.myapplication.util.BrotliUtils;
 import com.guch8017.myapplication.util.Constant;
 import com.guch8017.myapplication.util.IO;

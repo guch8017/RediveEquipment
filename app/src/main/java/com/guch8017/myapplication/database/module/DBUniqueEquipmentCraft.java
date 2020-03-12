@@ -1,4 +1,4 @@
-package com.guch8017.myapplication.database;
+package com.guch8017.myapplication.database.module;
 
 public class DBUniqueEquipmentCraft {
     // SQLite Table Name: unique_equipment_craft

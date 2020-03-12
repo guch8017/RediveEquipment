@@ -39,12 +39,12 @@ public class DatabaseReflector {
 
 
     @Nullable
-    public List<Object> reflectClass(@NonNull String className, @NonNull String tableName){
+    public Object reflectClass(@NonNull String className, @NonNull String tableName){
         return reflectClass(className, tableName, null);
     }
 
     @Nullable
-    public List<Object> reflectClass(@NonNull String className, @NonNull String tableName,
+    public Object reflectClass(@NonNull String className, @NonNull String tableName,
                                     @Nullable String sqlLimitation){
         String sql = "SELECT * FROM " + tableName;
         if(sqlLimitation != null){

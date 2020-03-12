@@ -1,4 +1,4 @@
-package com.guch8017.myapplication.database;
+package com.guch8017.myapplication.database.module;
 
 public class DBUniqueEquipmentEnhanceData {
     public static final String tableName = "unique_equipment_enhance_data";

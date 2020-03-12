@@ -1,4 +1,4 @@
-package com.guch8017.myapplication.unitDetailActivity;
+package com.guch8017.myapplication.activity.unitDetailActivity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,9 +15,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.guch8017.myapplication.R;
-import com.guch8017.myapplication.database.DBUnitComments;
-import com.guch8017.myapplication.database.DBUnitData;
-import com.guch8017.myapplication.database.DBUnitProfile;
+import com.guch8017.myapplication.database.module.DBUnitComments;
+import com.guch8017.myapplication.database.module.DBUnitData;
+import com.guch8017.myapplication.database.module.DBUnitProfile;
 import com.guch8017.myapplication.util.Constant;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;

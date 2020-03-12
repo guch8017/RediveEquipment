@@ -1,8 +1,9 @@
-package com.guch8017.myapplication.database;
+package com.guch8017.myapplication.database.module;
 
 public class DBEquipmentData {
     public static final String tableNameUnique = "unique_equipment_data";
     public static final String tableName = "equipment_data";
+    public int equipment_id;
     public String equipment_name;
     public String description;
     public int promotion_level;

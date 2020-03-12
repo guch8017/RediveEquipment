@@ -1,4 +1,4 @@
-package com.guch8017.myapplication.unitDetailActivity;
+package com.guch8017.myapplication.activity.unitDetailActivity;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -11,11 +11,11 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.guch8017.myapplication.R;
-import com.guch8017.myapplication.database.DBUniqueEquip;
-import com.guch8017.myapplication.database.DBUnitComments;
-import com.guch8017.myapplication.database.DBUnitData;
-import com.guch8017.myapplication.database.DBUnitProfile;
-import com.guch8017.myapplication.database.DBUnitPromotion;
+import com.guch8017.myapplication.database.module.DBUniqueEquip;
+import com.guch8017.myapplication.database.module.DBUnitComments;
+import com.guch8017.myapplication.database.module.DBUnitData;
+import com.guch8017.myapplication.database.module.DBUnitProfile;
+import com.guch8017.myapplication.database.module.DBUnitPromotion;
 import com.guch8017.myapplication.database.DatabaseReflector;
 
 import java.util.ArrayList;

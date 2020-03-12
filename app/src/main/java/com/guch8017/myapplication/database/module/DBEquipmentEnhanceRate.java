@@ -1,4 +1,4 @@
-package com.guch8017.myapplication.database;
+package com.guch8017.myapplication.database.module;
 
 public class DBEquipmentEnhanceRate {
     public static final String tableName = "equipment_enhance_rate";

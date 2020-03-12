@@ -1,24 +1,21 @@
-package com.guch8017.myapplication.equipmentActivity;
+package com.guch8017.myapplication.activity.equipmentActivity;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.guch8017.myapplication.R;
-import com.guch8017.myapplication.database.DBEquipmentCraft;
-import com.guch8017.myapplication.database.DBEquipmentData;
-import com.guch8017.myapplication.database.DBEquipmentEnhanceData;
-import com.guch8017.myapplication.database.DBEquipmentEnhanceRate;
-import com.guch8017.myapplication.database.DBUniqueEquip;
-import com.guch8017.myapplication.database.DBUniqueEquipmentCraft;
-import com.guch8017.myapplication.database.DBUniqueEquipmentEnhanceData;
+import com.guch8017.myapplication.database.module.DBEquipmentCraft;
+import com.guch8017.myapplication.database.module.DBEquipmentData;
+import com.guch8017.myapplication.database.module.DBEquipmentEnhanceData;
+import com.guch8017.myapplication.database.module.DBEquipmentEnhanceRate;
+import com.guch8017.myapplication.database.module.DBUniqueEquipmentCraft;
+import com.guch8017.myapplication.database.module.DBUniqueEquipmentEnhanceData;
 import com.guch8017.myapplication.database.DatabaseReflector;
 
 import java.util.ArrayList;

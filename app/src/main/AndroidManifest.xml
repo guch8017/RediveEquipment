@@ -22,8 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".unitDetailActivity.UnitDetailActivity"/>
-        <activity android:name=".equipmentActivity.EquipmentActivity"/>
+        <activity android:name=".activity.unitDetailActivity.UnitDetailActivity"/>
+        <activity android:name=".activity.equipmentActivity.EquipmentActivity"/>
         <activity android:name=".uniqueEquipActivity.UniqueEquipActivity" />
     </application>
 

@@ -10,7 +10,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
+/*
+Modified from ShizuruNote
+ */
 public class BrotliUtils {
     /**缓冲字节*/
     public static final int BUFFER = 1024;
