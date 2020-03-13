@@ -15,11 +15,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.guch8017.rediveEquipment.R;
 import com.guch8017.rediveEquipment.database.DatabaseReflector;
@@ -27,13 +23,10 @@ import com.guch8017.rediveEquipment.database.module.DBEquipmentData;
 import com.guch8017.rediveEquipment.database.module.DBQuest;
 import com.guch8017.rediveEquipment.database.module.DBWave;
 import com.guch8017.rediveEquipment.database.module.GetQuests;
-import com.guch8017.rediveEquipment.mainFragmentUI.home.HomeFragment;
 import com.guch8017.rediveEquipment.util.Constant;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.imageaware.ImageViewAware;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EquipmentSearchActivity extends AppCompatActivity {

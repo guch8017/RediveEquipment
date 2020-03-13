@@ -1,4 +1,4 @@
-package com.guch8017.rediveEquipment.mainFragmentUI.notifications;
+package com.guch8017.rediveEquipment.activity.mainActivity.notifications;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

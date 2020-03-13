@@ -23,4 +23,5 @@
     <string name="title_dashboard">装备</string>
     <string name="title_home">角色</string>
     <string name="title_notifications">计算器</string>
+    <string name="crafted_cost">合成花费</string>
 </resources>

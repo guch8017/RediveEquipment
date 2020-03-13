@@ -1,4 +1,4 @@
-package com.guch8017.rediveEquipment.mainFragmentUI.dashboard;
+package com.guch8017.rediveEquipment.activity.mainActivity.dashboard;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 
 
 import com.guch8017.rediveEquipment.R;
+import com.guch8017.rediveEquipment.activity.equipmentActivity.EquipmentActivity;
 import com.guch8017.rediveEquipment.activity.equipmentSearchActivity.EquipmentSearchActivity;
 import com.guch8017.rediveEquipment.database.module.DBEquipmentData;
 import com.guch8017.rediveEquipment.database.DatabaseReflector;
@@ -122,8 +123,8 @@ public class DashboardFragment extends Fragment {
         }
 
         private void searchAndStartActivity(final int eid){
-            Intent intent = new Intent(getContext(), EquipmentSearchActivity.class);
-            intent.putExtra("equipmentId", eid);
+            Intent intent = new Intent(getContext(), EquipmentActivity.class);
+            intent.putExtra("equipment_id", eid);
             startActivity(intent);
         }
     }

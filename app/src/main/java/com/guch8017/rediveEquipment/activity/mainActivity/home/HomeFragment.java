@@ -1,4 +1,4 @@
-package com.guch8017.rediveEquipment.mainFragmentUI.home;
+package com.guch8017.rediveEquipment.activity.mainActivity.home;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
