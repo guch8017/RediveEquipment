@@ -115,7 +115,7 @@ public class UnitEquipmentFragment extends Fragment {
                             Intent intent = new Intent(getContext(), EquipmentActivity.class);
                             intent.putExtra("equipment_id", unit_promotion.equip_slot_1);
                             intent.putExtra("isUnique",false);
-                            //startActivity(intent);
+                            startActivity(intent);
                         }
                     });
                 }
@@ -127,7 +127,7 @@ public class UnitEquipmentFragment extends Fragment {
                             Intent intent = new Intent(getContext(), EquipmentActivity.class);
                             intent.putExtra("equipment_id", unit_promotion.equip_slot_2);
                             intent.putExtra("isUnique",false);
-                            //startActivity(intent);
+                            startActivity(intent);
                         }
                     });
                 }
@@ -139,7 +139,7 @@ public class UnitEquipmentFragment extends Fragment {
                             Intent intent = new Intent(getContext(), EquipmentActivity.class);
                             intent.putExtra("equipment_id", unit_promotion.equip_slot_3);
                             intent.putExtra("isUnique",false);
-                            //startActivity(intent);
+                            startActivity(intent);
                         }
                     });
                 }
@@ -151,7 +151,7 @@ public class UnitEquipmentFragment extends Fragment {
                             Intent intent = new Intent(getContext(), EquipmentActivity.class);
                             intent.putExtra("equipment_id", unit_promotion.equip_slot_4);
                             intent.putExtra("isUnique",false);
-                            //startActivity(intent);
+                            startActivity(intent);
                         }
                     });
                 }
@@ -163,7 +163,7 @@ public class UnitEquipmentFragment extends Fragment {
                             Intent intent = new Intent(getContext(), EquipmentActivity.class);
                             intent.putExtra("equipment_id", unit_promotion.equip_slot_5);
                             intent.putExtra("isUnique",false);
-                            //startActivity(intent);
+                            startActivity(intent);
                         }
                     });
                 }
@@ -175,7 +175,7 @@ public class UnitEquipmentFragment extends Fragment {
                             Intent intent = new Intent(getContext(), EquipmentActivity.class);
                             intent.putExtra("equipment_id", unit_promotion.equip_slot_6);
                             intent.putExtra("isUnique",false);
-                            //startActivity(intent);
+                            startActivity(intent);
                         }
                     });
                 }

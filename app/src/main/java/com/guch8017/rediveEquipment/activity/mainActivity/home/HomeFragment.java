@@ -218,10 +218,18 @@ public class HomeFragment extends Fragment {
                     boolean status = IO.deleteFile(databaseFilePath);
                     Log.i("HomeFragment","Delete Database :"+status);
                 }
+                if(IO.isFileExist(databaseFilePath+"-shm")){
+                    boolean status = IO.deleteFile(databaseFilePath+"-shm");
+                    Log.i("HomeFragment","Delete Database -shm:"+status);
+                }
+                if(IO.isFileExist(databaseFilePath+"-wal")){
+                    boolean status = IO.deleteFile(databaseFilePath+"-wal");
+                    Log.i("HomeFragment","Delete Database -wal:"+status);
+                }
                 BrotliUtils.deCompress(downloadTempFilePath, databaseFilePath);
                 Intent intent = new Intent("com.guch8017.pcr.DATABASE_REFRESH");
                 swipeRefreshLayout.setRefreshing(false);
-                mContext.sendBroadcast(intent);
+                getContext().sendBroadcast(intent);
             }catch (Exception e){
                 e.printStackTrace();
                 swipeRefreshLayout.setRefreshing(false);

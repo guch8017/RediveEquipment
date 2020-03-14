@@ -30,8 +30,13 @@ public class UserDatabase extends SQLiteOpenHelper {
                 "current_equip INTEGER NOT NULL," +
                 "target_rank INTEGER NOT NULL," +
                 "target_equip INTEGER NOT NULL);";
-        Cursor cursor = db.rawQuery(sql, new String[]{});
-        cursor.close();
+        String sql2 =
+                "CREATE TABLE BoxHeader(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                "image_id INTEGER NOT NULL," +
+                "title String NOT NULL);";
+        db.execSQL(sql, new String[]{});
+        db.execSQL(sql2, new String[]{});
     }
 
     @Override
