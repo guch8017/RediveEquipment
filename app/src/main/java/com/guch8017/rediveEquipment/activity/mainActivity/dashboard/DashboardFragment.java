@@ -39,7 +39,7 @@ public class DashboardFragment extends Fragment {
         super.onCreate(savedInstanceState);
         databaseReflector = new DatabaseReflector(getContext());
         equipmentIDs = new ArrayList<>();
-        List<DBEquipmentData> data = (List<DBEquipmentData>) (Object)(databaseReflector.reflectClass(DBEquipmentData.class.getName(), DBEquipmentData.tableName));
+        List<DBEquipmentData> data = (List<DBEquipmentData>) databaseReflector.reflectClass(DBEquipmentData.class.getName(), DBEquipmentData.tableName);
         if(data == null){
             return;
         }

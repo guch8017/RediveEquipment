@@ -149,7 +149,7 @@ public class EquipmentSearchActivity extends AppCompatActivity {
                 int oddViewId = getResources().getIdentifier("drop_item_odd" + i,"id",EquipmentSearchActivity.this.getPackageName());
                 ImageView img = view.findViewById(imgViewId);
                 TextView text = view.findViewById(oddViewId);
-                text.setText(String.valueOf(reward.odds) + "%");
+                text.setText(reward.odds + "%");
                 ImageLoader.getInstance().displayImage(Constant.equipImageUrl(reward.rewardID),
                         new ImageViewAware(img, false), Constant.displayImageOption);
                 i += 1;

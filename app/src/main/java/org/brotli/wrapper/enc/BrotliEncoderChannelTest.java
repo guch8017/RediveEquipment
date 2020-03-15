@@ -96,8 +96,8 @@ public class BrotliEncoderChannelTest extends BrotliJniTestBase {
           while (src.hasRemaining()) {
             int limit = Math.min(CHUNK_SIZE, src.remaining());
             ByteBuffer slice = src.slice();
-            ((Buffer) slice).limit(limit);
-            ((Buffer) src).position(src.position() + limit);
+            slice.limit(limit);
+            src.position(src.position() + limit);
             encoder.write(slice);
           }
           break;

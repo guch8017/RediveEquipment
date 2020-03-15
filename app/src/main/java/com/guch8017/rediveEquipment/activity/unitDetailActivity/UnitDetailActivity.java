@@ -44,27 +44,27 @@ public class UnitDetailActivity extends AppCompatActivity {
             return;
         }
         DatabaseReflector reflector = new DatabaseReflector(this);
-        List<DBUnitProfile> profiles = (List<DBUnitProfile>)(Object) reflector.reflectClass(
+        List<DBUnitProfile> profiles = (List<DBUnitProfile>) reflector.reflectClass(
                 DBUnitProfile.class.getName(), DBUnitProfile.tableName,
                 "unit_id="+unitID);
         if(profiles == null || profiles.size() == 0){
             Log.e(TAG, "无法从数据库中获取角色数据 ERR:DBUnitProfile is null");
             return;
         }else unitProfile = profiles.get(0);
-        unitComments = (List<DBUnitComments>)(Object) reflector.reflectClass(
+        unitComments = (List<DBUnitComments>) reflector.reflectClass(
                 DBUnitComments.class.getName(),DBUnitComments.tableName,
                 "unit_id="+unitID);
-        List<DBUnitData> data = (List<DBUnitData>)(Object) reflector.reflectClass(
+        List<DBUnitData> data = (List<DBUnitData>) reflector.reflectClass(
                 DBUnitData.class.getName(), DBUnitData.tableName,
                 "unit_id="+unitID);
         if(data == null || data.size() == 0){
             Log.e(TAG, "无法从数据库中获取角色数据 ERR:DBUnitData is null");
             return;
         }else unitData = data.get(0);
-        unitPromotions = (List<DBUnitPromotion>)(Object) reflector.reflectClass(
+        unitPromotions = (List<DBUnitPromotion>) reflector.reflectClass(
                 DBUnitPromotion.class.getName(),DBUnitPromotion.tableName,
                 "unit_id="+unitID);
-        List<DBUniqueEquip> uData = (List<DBUniqueEquip>)(Object) reflector.reflectClass(
+        List<DBUniqueEquip> uData = (List<DBUniqueEquip>) reflector.reflectClass(
                 DBUniqueEquip.class.getName(), DBUniqueEquip.tableName,
                 "unit_id="+unitID);
         if(uData == null || uData.size() == 0){

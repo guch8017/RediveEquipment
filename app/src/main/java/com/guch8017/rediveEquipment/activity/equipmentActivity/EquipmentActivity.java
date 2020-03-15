@@ -293,10 +293,7 @@ DBEquipmentCraft.tableName, sqlLimit);
         @Override
         public boolean isEnabled(int position){
             EquipmentAttr attr = attrList.get(position);
-            if(attr.type == ViewType.Craft){
-                return true;
-            }
-            return false;
+            return attr.type == ViewType.Craft;
         }
 
         @Override
