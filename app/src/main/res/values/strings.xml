@@ -7,6 +7,7 @@
     <!-- 通用 -->
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
+    <string name="rank">Rank %1$d</string>
 
     <!-- 属性 -->
     <string name="atk">Physical Attack</string>

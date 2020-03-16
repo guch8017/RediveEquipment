@@ -36,7 +36,6 @@ dependencies {
     api('com.arialyy.aria:core:<last-version>') {
         exclude group: 'androidx.appcompat.app'
     }
-
     implementation files('libs/commons-compress-1.19.jar')
     // UIL
     // 异步图片加载

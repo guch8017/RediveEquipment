@@ -17,6 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.guch8017.rediveEquipment.R;
 import com.guch8017.rediveEquipment.database.BoxDatabase;
 import com.guch8017.rediveEquipment.database.module.DBCharacter;
+import com.guch8017.rediveEquipment.util.Constant;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.imageaware.ImageViewAware;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,9 +73,31 @@ public class BoxCharacterActivity extends AppCompatActivity {
             }else{
                 vh = (CharacterViewHolder)convertView.getTag();
             }
-            vh.targetRank.setText("Rank " + character.targetRank);
-            StringBuilder builder = new StringBuilder();
-            // TODO: 角色rank及装备状态显示
+            if(character != null) {
+                vh.targetRank.setText(String.format(getString(R.string.rank), character.targetRank));
+                vh.currentRank.setText(String.format(getString(R.string.rank), character.currentRank));
+                StringBuilder currentEquipBuilder = new StringBuilder();
+                for(int i=1; i<33; i = i << 1){
+                    if((character.currentEquip & i) != 0){
+                        currentEquipBuilder.append('*');
+                    }else{
+                        currentEquipBuilder.append('-');
+                    }
+                }
+                vh.currentEquip.setText(currentEquipBuilder.toString());
+                StringBuilder targetEquipBuilder = new StringBuilder();
+                for(int i=1; i<33; i = i << 1){
+                    if((character.targetEquip & i) != 0){
+                        targetEquipBuilder.append('*');
+                    }else{
+                        targetEquipBuilder.append('-');
+                    }
+                }
+                vh.targetEquip.setText(targetEquipBuilder.toString());
+                ImageLoader.getInstance().displayImage(Constant.unitImageUrl(character.characterId),
+                        new ImageViewAware(vh.characterImage, false),
+                        Constant.displayImageOption);
+            }
             return convertView;
         }
 
