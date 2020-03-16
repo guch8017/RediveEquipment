@@ -280,7 +280,7 @@ public class HomeFragment extends Fragment {
         }
 
 
-        @NonNull @Override public View getView(int position, View convertView, ViewGroup parent){
+        @NonNull @Override public View getView(int position, View convertView, @NonNull ViewGroup parent){
             UnitViewHolder viewHolder;
             DBUnitProfile profile = getItem(position);
             if(convertView == null){

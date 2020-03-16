@@ -26,21 +26,22 @@ import java.util.List;
 
 public class NotificationsFragment extends Fragment {
     private BoxDatabase mDatabase;
+    private BoxAdapter mAdapter;
 
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         mDatabase = new BoxDatabase(getContext());
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
         ListView listView = root.findViewById(R.id.box_list);
-        final BoxAdapter adapter = new BoxAdapter(mDatabase.getBoxList());
-        listView.setAdapter(adapter);
+        mAdapter = new BoxAdapter(mDatabase.getBoxList());
+        listView.setAdapter(mAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object obj = parent.getAdapter().getItem(position);
                 if(obj == null){
                     mDatabase.addBox();
-                    adapter.SetData(mDatabase.getBoxList());
+                    mAdapter.SetData(mDatabase.getBoxList());
                 }else {
                     int boxId = ((DBBox)obj).id;
                     Intent intent = new Intent(NotificationsFragment.this.getContext(), BoxDetailActivity.class);
@@ -50,6 +51,15 @@ public class NotificationsFragment extends Fragment {
             }
         });
         return root;
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        if(BoxDatabase.dataModified){
+            BoxDatabase.dataModified = false;
+            mAdapter.SetData(mDatabase.getBoxList());
+        }
     }
 
     class BoxAdapter extends BaseAdapter{
@@ -107,7 +117,7 @@ public class NotificationsFragment extends Fragment {
             return convertView;
         }
 
-        public void SetData(List<DBBox> boxes){
+        private void SetData(List<DBBox> boxes){
             this.boxes.clear();
             this.boxes.addAll(boxes);
             notifyDataSetChanged();

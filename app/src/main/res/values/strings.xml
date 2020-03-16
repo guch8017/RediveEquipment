@@ -4,6 +4,10 @@
     <string name="title_dashboard">Equipment</string>
     <string name="title_notifications">Caculator</string>
 
+    <!-- 通用 -->
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+
     <!-- 属性 -->
     <string name="atk">Physical Attack</string>
     <string name="def">Physical Defence</string>
@@ -25,4 +29,14 @@
     <string name="life_steal">Life Steal</string>
     <string name="sale_price">Sale Price</string>
     <string name="crafted_cost">Crafted Cost</string>
+
+    <!-- Box界面 -->
+    <string name="modify_name">Modify Box Name</string>
+    <string name="modify_image">Modify Box Image</string>
+    <string name="box_character">Characters</string>
+    <string name="equip_requirement">Equip Requirement</string>
+    <string name="piece_requirement">Piece Requirement</string>
+    <string name="piece_own">Piece Owned</string>
+    <string name="map_plan">Map Planning</string>
+    <string name="delete_box">Delete Box</string>
 </resources>

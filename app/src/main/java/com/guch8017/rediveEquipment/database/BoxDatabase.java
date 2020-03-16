@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import androidx.annotation.Nullable;
+
 import com.guch8017.rediveEquipment.database.module.DBBox;
 import com.guch8017.rediveEquipment.database.module.DBCharacter;
 
@@ -13,6 +15,7 @@ import java.util.List;
 public class BoxDatabase {
     private Context mContext;
     private SQLiteDatabase database;
+    public static boolean dataModified = false;
     public BoxDatabase(Context context){
         mContext = context;
         UserDatabase userDatabase = UserDatabase.getInstance(context);
@@ -32,6 +35,20 @@ public class BoxDatabase {
         }
         cursor.close();
         return boxes;
+    }
+
+    public @Nullable DBBox getBox(int boxId){
+        DBBox box = null;
+        String sql = "SELECT * FROM BoxHeader WHERE id=?";
+        Cursor cursor = database.rawQuery(sql, new String[]{String.valueOf(boxId)});
+        if(cursor.moveToNext()){
+            box = new DBBox();
+            box.id = cursor.getInt(cursor.getColumnIndex("id"));
+            box.image_id = cursor.getInt(cursor.getColumnIndex("image_id"));
+            box.title = cursor.getString(cursor.getColumnIndex("title"));
+        }
+        cursor.close();
+        return box;
     }
 
     public List<DBCharacter> getCharacterList(int boxId){
@@ -57,16 +74,19 @@ public class BoxDatabase {
         String sql2 = "DELETE FROM BoxHeader WHERE id="+boxId;
         database.rawQuery(sql, new String[]{}).close();
         database.rawQuery(sql2, new String[]{}).close();
+        dataModified = true;
     }
 
     public void addBox(){
         String sql = "INSERT INTO BoxHeader (image_id, title) VALUES (?, ?)";
         database.execSQL(sql, new String[]{"1", "NewBox"});
+        //dataModified = true;
     }
 
     public void modifyBox(DBBox box){
         String sql = "UPDATE BoxHeader SET image_id=?, title=? WHERE id=?";
-        database.execSQL(sql, new String[]{String.valueOf(box.image_id), box.title});
+        database.execSQL(sql, new String[]{String.valueOf(box.image_id), box.title, String.valueOf(box.id)});
+        dataModified = true;
     }
 
     public void addCharacter(int box_id, int character_id){
