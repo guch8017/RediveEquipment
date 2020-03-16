@@ -8,7 +8,7 @@ import java.util.List;
 public class GetQuests {
     public static List<DBQuest> getQuests(DatabaseReflector reflector, int equipmentId){
         List<DBQuest> quests = new ArrayList<>();
-        List<DBQuestData> questDatas = (List<DBQuestData>)(Object)(reflector.reflectClass(DBQuestData.class.getName(), DBQuestData.tableName));
+        List<DBQuestData> questDatas = (List<DBQuestData>) reflector.reflectClass(DBQuestData.class.getName(), DBQuestData.tableName);
         if(questDatas == null){
             return quests;
         }
@@ -43,8 +43,8 @@ public class GetQuests {
             waveStringBuilder.append(',');
         }
         waveStringBuilder.deleteCharAt(waveStringBuilder.length() - 1);
-        List<DBWaveGroupData> waveDatas = (List<DBWaveGroupData>)(Object)(reflector.reflectClass(DBWaveGroupData.class.getName(),
-                DBWaveGroupData.dbName, String.format("wave_group_id IN (%s)", waveStringBuilder.toString())));
+        List<DBWaveGroupData> waveDatas = (List<DBWaveGroupData>) reflector.reflectClass(DBWaveGroupData.class.getName(),
+                DBWaveGroupData.dbName, String.format("wave_group_id IN (%s)", waveStringBuilder.toString()));
         if(waveDatas == null){
             return waves;
         }

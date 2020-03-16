@@ -84,7 +84,7 @@ public class Decoder {
             break;
           }
           ByteBuffer inputBuffer = decoder.getInputBuffer();
-          ((Buffer) inputBuffer).clear();
+          inputBuffer.clear();
           int bytesRead = source.read(inputBuffer);
           if (bytesRead == -1) {
             fail("unexpected end of input");
@@ -108,7 +108,7 @@ public class Decoder {
   }
 
   void discard(int length) {
-    ((Buffer) buffer).position(buffer.position() + length);
+    buffer.position(buffer.position() + length);
     if (!buffer.hasRemaining()) {
       buffer = null;
     }
@@ -117,7 +117,7 @@ public class Decoder {
   int consume(ByteBuffer dst) {
     ByteBuffer slice = buffer.slice();
     int limit = Math.min(slice.remaining(), dst.remaining());
-    ((Buffer) slice).limit(limit);
+    slice.limit(limit);
     dst.put(slice);
     discard(limit);
     return limit;

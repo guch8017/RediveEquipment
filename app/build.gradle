@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.guch8017.myapplication"
-        minSdkVersion 22
+        minSdkVersion 24
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -42,4 +42,6 @@ dependencies {
     // 异步图片加载
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
+    // 动态规划数学库
+    implementation 'org.apache.commons:commons-math3:3.6.1'
 }

@@ -112,7 +112,7 @@ public class Encoder {
   boolean encode(EncoderJNI.Operation op) throws IOException {
     boolean force = (op != EncoderJNI.Operation.PROCESS);
     if (force) {
-      ((Buffer) inputBuffer).limit(inputBuffer.position());
+      inputBuffer.limit(inputBuffer.position());
     } else if (inputBuffer.hasRemaining()) {
       return true;
     }
@@ -130,7 +130,7 @@ public class Encoder {
         encoder.push(op, inputBuffer.limit());
         hasInput = false;
       } else {
-        ((Buffer) inputBuffer).clear();
+        inputBuffer.clear();
         return true;
       }
     }

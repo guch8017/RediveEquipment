@@ -66,10 +66,10 @@ public class BrotliEncoderChannel extends Encoder implements WritableByteChannel
       while (src.hasRemaining() && encode(EncoderJNI.Operation.PROCESS)) {
         int limit = Math.min(src.remaining(), inputBuffer.remaining());
         ByteBuffer slice = src.slice();
-        ((Buffer) slice).limit(limit);
+        slice.limit(limit);
         inputBuffer.put(slice);
         result += limit;
-        ((Buffer) src).position(src.position() + limit);
+        src.position(src.position() + limit);
       }
       return result;
     }

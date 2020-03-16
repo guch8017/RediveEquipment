@@ -26,10 +26,10 @@ public class Constant {
         }else {
             switch (star) {
                 case 1:
-                    postfix = String.valueOf(unitId / 100) + "11.webp";
+                    postfix = unitId / 100 + "11.webp";
                     break;
                 case 3:
-                    postfix = String.valueOf(unitId / 100) + "31.webp";
+                    postfix = unitId / 100 + "31.webp";
                     break;
                 default:
                     postfix = "000001.webp";
