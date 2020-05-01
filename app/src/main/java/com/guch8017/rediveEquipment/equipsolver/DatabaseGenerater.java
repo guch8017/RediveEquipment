@@ -40,7 +40,6 @@ public class DatabaseGenerater {
                 }
             }
         }
-        Log.i("DB GEN", "Contains: " + map.containsKey(114223L));
         if(IO.isFileExist(Constant.compliedDataFilepath(context))){
             IO.deleteFile(Constant.compliedDataFilepath(context));
         }

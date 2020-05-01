@@ -11,7 +11,7 @@ public class EquipDropNeedList {
     private LongSparseArray<Integer> idNumMap;
 
     public EquipDropNeedList(){
-
+        idNumMap = new LongSparseArray<>();
     }
 
     public LongSparseArray<Integer> getIdNumMap(){

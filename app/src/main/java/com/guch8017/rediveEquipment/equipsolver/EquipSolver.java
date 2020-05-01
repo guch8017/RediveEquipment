@@ -5,6 +5,8 @@ import android.util.LongSparseArray;
 import android.util.SparseArray;
 import android.util.SparseLongArray;
 
+import androidx.annotation.Nullable;
+
 import org.apache.commons.math3.optim.PointValuePair;
 import org.apache.commons.math3.optim.linear.LinearConstraint;
 import org.apache.commons.math3.optim.linear.LinearConstraintSet;
@@ -28,6 +30,7 @@ public class EquipSolver {
      * @param needList 装备需求表
      * @return 所需刷的图及次数, 按次数降序排列. 若过程有误, 返回null
      */
+    @Nullable
     public static ArrayList<EquipDropMapCapsule> SingleSolve(EquipDropMatrix dropMatrix,
                                                              EquipDropNeedList needList){
         ArrayList<EquipDropMapCapsule> ans = new ArrayList<EquipDropMapCapsule>();
@@ -78,7 +81,8 @@ public class EquipSolver {
             double[] cons = new double[mapCount];
             for (EquipDropCapsule map : maps) {
                 long nowMapId = map.getMapQuestId();
-                if (mapId2xIndex.indexOfKey(nowMapId) != -1) {
+                if (mapId2xIndex.indexOfKey(nowMapId) >= 0) {
+
                     int xIndex = mapId2xIndex.get(nowMapId);
                     cons[xIndex] += map.getDropProb();
                 }
