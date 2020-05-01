@@ -1,7 +1,10 @@
 package com.guch8017.rediveEquipment.util;
 
+import android.content.Context;
+
 import com.guch8017.rediveEquipment.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 public class Constant {
     public static String equipImageUrl(int equipId){
@@ -45,4 +48,10 @@ public class Constant {
     public final static DisplayImageOptions displayImageOption = new DisplayImageOptions.Builder()
             .cacheInMemory(true).cacheOnDisk(true)
             .showImageOnLoading(R.drawable.ic_launcher_background).build();
+    public static ImageLoaderConfiguration imageLoaderConfiguration(Context context){
+        ImageLoaderConfiguration configuration = new ImageLoaderConfiguration.Builder(context)
+            .memoryCacheExtraOptions(400,400)
+            .diskCacheFileCount(1000).build();
+        return configuration;
+    }
 }

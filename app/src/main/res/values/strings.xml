@@ -40,4 +40,15 @@
     <string name="piece_own">Piece Owned</string>
     <string name="map_plan">Map Planning</string>
     <string name="delete_box">Delete Box</string>
+
+    <!-- 添加/修改角色界面 -->
+    <string name="new_char">Add Character</string>
+    <string name="modify_char">Modify Character</string>
+
+    <string name="current_rank">Current Rank</string>
+    <string name="target_rank">Target Rank</string>
+    <string name="save_char">Save Content</string>
+    <string name="cancel_char">Cancel</string>
+    <string name="ERR_TARGET_SMALLER">Error: Target rank should not be smaller than current rank</string>
+    <string name="ERR_TARGET_EQUIP">Error: Equip exist on current equip but not on target equip</string>
 </resources>

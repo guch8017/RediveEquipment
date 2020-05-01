@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,7 +77,6 @@ public class HomeFragment extends Fragment {
         filter.addAction("com.guch8017.pcr.DATABASE_REFRESH");
         mReceiver = new DatabaseRefreshReceiver();
         mContext.registerReceiver(mReceiver,filter);
-
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         final ListView unitList = root.findViewById(R.id.unit_list);
         swipeRefreshLayout = root.findViewById(R.id.unit_list_refresh);
@@ -89,7 +89,7 @@ public class HomeFragment extends Fragment {
                 final String unitIDText = unitIDTextView.getText().toString();
 
                 int unitID = Integer.valueOf(unitIDText);
-
+                
                 Intent intent = new Intent(getContext(), UnitDetailActivity.class);
                 Log.i("Unit List Fragment", "Intent值为 unit_id = "+unitID);
                 intent.putExtra("unit_id", unitID);

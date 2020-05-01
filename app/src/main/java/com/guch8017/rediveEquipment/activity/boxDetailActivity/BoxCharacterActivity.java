@@ -3,9 +3,11 @@ package com.guch8017.rediveEquipment.activity.boxDetailActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -21,13 +23,14 @@ import com.guch8017.rediveEquipment.util.Constant;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.imageaware.ImageViewAware;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BoxCharacterActivity extends AppCompatActivity {
+    private static final String TAG = "BoxCharacterActivity";
     private BoxDatabase mDatabase;
     private int boxId;
     private List<DBCharacter> characters;
+    private ListView mListView;
     @Override
     public void onCreate(Bundle savedInstanceBundle){
         super.onCreate(savedInstanceBundle);
@@ -37,17 +40,41 @@ public class BoxCharacterActivity extends AppCompatActivity {
         }
         mDatabase = new BoxDatabase(this);
         setContentView(R.layout.activity_box_character);
-        ListView charList = findViewById(R.id.character_list);
-
+        mListView = findViewById(R.id.character_list);
+        characters = mDatabase.getCharacterList(boxId);
+        mListView.setAdapter(new CharacterAdapter(this, R.layout.character_equip_item, characters));
         findViewById(R.id.add_char_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BoxCharacterActivity.this, AddBoxCharacterActivity.class);
+                Intent intent = new Intent(BoxCharacterActivity.this, CharacterSelectActivity.class);
                 intent.putExtra("boxId", boxId);
                 startActivity(intent);
             }
         });
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                DBCharacter character = characters.get(position);
+                Intent intent = new Intent(BoxCharacterActivity.this, ModifyCharacterActivity.class);
+                intent.putExtra("isNew", false);
+                intent.putExtra("unitId", character.characterId);
+                intent.putExtra("boxId", character.boxId);
+                startActivity(intent);
+            }
+        });
 
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        if(!ImageLoader.getInstance().isInited()){
+            Log.i(TAG, "Warning: ImageLoader未初始化");
+            ImageLoader.getInstance().init(Constant.imageLoaderConfiguration(this));
+        }
+        characters.clear();
+        characters.addAll(mDatabase.getCharacterList(boxId));
+        ((CharacterAdapter)mListView.getAdapter()).notifyDataSetChanged();
     }
 
     class CharacterAdapter extends ArrayAdapter<DBCharacter> {
@@ -79,22 +106,22 @@ public class BoxCharacterActivity extends AppCompatActivity {
                 StringBuilder currentEquipBuilder = new StringBuilder();
                 for(int i=1; i<33; i = i << 1){
                     if((character.currentEquip & i) != 0){
-                        currentEquipBuilder.append('*');
+                        currentEquipBuilder.append('■');
                     }else{
-                        currentEquipBuilder.append('-');
+                        currentEquipBuilder.append('□');
                     }
                 }
                 vh.currentEquip.setText(currentEquipBuilder.toString());
                 StringBuilder targetEquipBuilder = new StringBuilder();
                 for(int i=1; i<33; i = i << 1){
                     if((character.targetEquip & i) != 0){
-                        targetEquipBuilder.append('*');
+                        targetEquipBuilder.append('■');
                     }else{
-                        targetEquipBuilder.append('-');
+                        targetEquipBuilder.append('□');
                     }
                 }
                 vh.targetEquip.setText(targetEquipBuilder.toString());
-                ImageLoader.getInstance().displayImage(Constant.unitImageUrl(character.characterId),
+                ImageLoader.getInstance().displayImage(Constant.unitImageUrl(character.characterId, 1),
                         new ImageViewAware(vh.characterImage, false),
                         Constant.displayImageOption);
             }

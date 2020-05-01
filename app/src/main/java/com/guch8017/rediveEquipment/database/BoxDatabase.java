@@ -69,6 +69,23 @@ public class BoxDatabase {
         return characters;
     }
 
+    public DBCharacter getCharacter(int boxId, int unitId){
+        DBCharacter character = null;
+        String sql = "SELECT * FROM Box WHERE box_id=? AND character_id=?";
+        Cursor cursor = database.rawQuery(sql, new String[]{String.valueOf(boxId), String.valueOf(unitId)});
+        if(cursor.moveToNext()){
+            character = new DBCharacter();
+            character.boxId = boxId;
+            character.characterId = unitId;
+            character.currentEquip = cursor.getInt(cursor.getColumnIndex("current_equip"));
+            character.currentRank = cursor.getInt(cursor.getColumnIndex("current_rank"));
+            character.targetRank = cursor.getInt(cursor.getColumnIndex("target_rank"));
+            character.targetEquip = cursor.getInt(cursor.getColumnIndex("target_equip"));
+        }
+        cursor.close();
+        return character;
+    }
+
     public void deleteBox(int boxId){
         String sql = "DELETE FROM Box WHERE box_id="+boxId;
         String sql2 = "DELETE FROM BoxHeader WHERE id="+boxId;
@@ -94,13 +111,19 @@ public class BoxDatabase {
         database.execSQL(sql, new String[]{String.valueOf(box_id), String.valueOf(character_id)});
     }
 
+    public void addCharacter(int box_id, DBCharacter character){
+        String sql = "INSERT INTO Box (box_id, character_id, current_rank, current_equip, target_rank, target_equip) VALUES (?, ?, ?, ?, ?, ?)";
+        database.execSQL(sql, new String[]{String.valueOf(box_id), String.valueOf(character.characterId), String.valueOf(character.currentRank),
+        String.valueOf(character.currentEquip), String.valueOf(character.targetRank), String.valueOf(character.targetEquip)});
+    }
+
     public void removeCharacter(int box_id, int character_id){
         String sql = "DELETE FROM Box WHERE box_id=? AND character_id=?";
         database.execSQL(sql, new String[]{String.valueOf(box_id), String.valueOf(character_id)});
     }
 
     public void modifyCharacter(DBCharacter character){
-        String sql = "UPDATE Box SET current_rank=?, current_quip=?, target_rank=?, target_equip=? WHERE box_id=? AND character_id=?";
+        String sql = "UPDATE Box SET current_rank=?, current_equip=?, target_rank=?, target_equip=? WHERE box_id=? AND character_id=?";
         database.execSQL(sql, new String[]{String.valueOf(character.currentRank), String.valueOf(character.currentEquip),
                 String.valueOf(character.targetRank), String.valueOf(character.targetEquip),
                 String.valueOf(character.boxId), String.valueOf(character.characterId)});

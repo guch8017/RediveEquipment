@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.guch8017.rediveEquipment.util.Constant;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -35,9 +37,7 @@ public class MainActivity extends AppCompatActivity {
         if(Build.VERSION.SDK_INT >= 23){
             getRWPermission();
         }
-        ImageLoader.getInstance().init(new ImageLoaderConfiguration.Builder(this)
-                .memoryCacheExtraOptions(400,400)
-                .diskCacheFileCount(1000).build());
+        ImageLoader.getInstance().init(Constant.imageLoaderConfiguration(this));
     }
 
     @TargetApi(23)

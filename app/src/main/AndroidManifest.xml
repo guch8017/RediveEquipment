@@ -27,6 +27,8 @@
         <activity android:name="com.guch8017.rediveEquipment.activity.equipmentSearchActivity.EquipmentSearchActivity" />
         <activity android:name=".activity.boxDetailActivity.BoxDetailActivity"/>
         <activity android:name=".activity.boxDetailActivity.BoxCharacterActivity"/>
+        <activity android:name=".activity.boxDetailActivity.CharacterSelectActivity"/>
+        <activity android:name=".activity.boxDetailActivity.ModifyCharacterActivity"/>
     </application>
 
 </manifest>
