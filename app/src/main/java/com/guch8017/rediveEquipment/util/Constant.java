@@ -1,10 +1,13 @@
 package com.guch8017.rediveEquipment.util;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.guch8017.rediveEquipment.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class Constant {
     public static String equipImageUrl(int equipId){
@@ -42,7 +45,10 @@ public class Constant {
         return prefix + postfix;
     }
 
-
+    public static String compliedDataFilepath(Context context){
+        Log.w(TAG, "compliedDataFilepath: " + context.getFilesDir().toString());
+        return context.getFilesDir().toString() + "/drop.data";
+    }
     public static final String databaseVersionUrl = "https://redive.estertion.win/last_version_jp.json";
     public static final String databaseUrl = "https://redive.estertion.win/db/redive_jp.db.br";
     public final static DisplayImageOptions displayImageOption = new DisplayImageOptions.Builder()

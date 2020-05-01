@@ -5,8 +5,13 @@ import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.guch8017.rediveEquipment.equipsolver.DatabaseGenerater;
+import com.guch8017.rediveEquipment.equipsolver.EquipDropCapsule;
+import com.guch8017.rediveEquipment.equipsolver.EquipDropMatrix;
 import com.guch8017.rediveEquipment.util.Constant;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -18,8 +23,10 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-public class MainActivity extends AppCompatActivity {
+import java.io.IOException;
 
+public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
             getRWPermission();
         }
         ImageLoader.getInstance().init(Constant.imageLoaderConfiguration(this));
+
     }
 
     @TargetApi(23)

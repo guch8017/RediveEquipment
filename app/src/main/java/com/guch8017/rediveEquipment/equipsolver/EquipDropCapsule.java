@@ -1,9 +1,11 @@
 package com.guch8017.rediveEquipment.equipsolver;
 
+import java.io.Serializable;
+
 /**
  * 用于包装: 地图编号(quest_id) 和 掉落装备的id(equipment_id) 和 基础掉落装备概率
  */
-public class EquipDropCapsule {
+public class EquipDropCapsule implements Serializable {
     private long mapQuestId;
     private long equipmentId;
     private double dropProb;
