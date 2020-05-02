@@ -30,6 +30,7 @@
         <activity android:name=".activity.boxDetailActivity.CharacterSelectActivity"/>
         <activity android:name=".activity.boxDetailActivity.ModifyCharacterActivity"/>
         <activity android:name=".activity.boxDetailActivity.EquipRequirementActivity"/>
+        <activity android:name=".activity.boxDetailActivity.LinearSolverActivity"/>
     </application>
 
 </manifest>

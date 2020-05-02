@@ -31,6 +31,8 @@ public class DatabaseGenerater {
         HashMap<Long, ArrayList<EquipDropCapsule>> map = new HashMap<>();
         List<DBQuest> quests = GetQuests.getQuests(database, -1);
         for(DBQuest quest: quests){
+            // 跳过Hard关卡和心碎宝珠本
+            if(quest.quest_id > 12000000) continue;
             for(DBWave.Reward reward: quest.rewards){
                 // 这里写死了是否为掉落物的判断逻辑，反正以后也不会有新的低等装备加入了
                 if(reward.rewardID > 110000 || reward.rewardID < 102282 || reward.rewardID == 102461 || (reward.rewardID >= 102551 && reward.rewardID <= 102612)){

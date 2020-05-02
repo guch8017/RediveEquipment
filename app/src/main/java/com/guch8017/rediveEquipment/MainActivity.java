@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.guch8017.rediveEquipment.database.Database;
 import com.guch8017.rediveEquipment.equipsolver.DatabaseGenerater;
 import com.guch8017.rediveEquipment.equipsolver.EquipDropCapsule;
 import com.guch8017.rediveEquipment.equipsolver.EquipDropMapCapsule;
@@ -49,7 +50,24 @@ public class MainActivity extends AppCompatActivity {
             getRWPermission();
         }
         ImageLoader.getInstance().init(Constant.imageLoaderConfiguration(this));
-
+        new Thread(){
+            @Override
+            public void run() {
+                try {
+                    DatabaseGenerater.generateComposeDatabase(MainActivity.this);
+                    DatabaseGenerater.generateDropDatabase(MainActivity.this);
+                    EquipDropCapsule[] cs = EquipDropMatrix.getInstance(MainActivity.this).getMaps(123132L);
+                    for(EquipDropCapsule c: cs){
+                        Log.i(TAG, "Map ID :" + c.getMapQuestId() + " Prop: " + c.getDropProb());
+                    }
+                    EquipDropNeedList l = new EquipDropNeedList();
+                    l.set(123132, 5);
+                    EquipSolver.SingleSolve(EquipDropMatrix.getInstance(MainActivity.this), l);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        };
     }
 
     @TargetApi(23)

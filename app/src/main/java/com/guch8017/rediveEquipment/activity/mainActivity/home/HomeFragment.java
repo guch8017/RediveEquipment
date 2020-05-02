@@ -31,6 +31,7 @@ import com.guch8017.rediveEquipment.database.module.DBUnitProfile;
 import com.guch8017.rediveEquipment.database.Database;
 import com.guch8017.rediveEquipment.database.DatabaseReflector;
 import com.guch8017.rediveEquipment.activity.unitDetailActivity.UnitDetailActivity;
+import com.guch8017.rediveEquipment.equipsolver.DatabaseGenerater;
 import com.guch8017.rediveEquipment.util.BrotliUtils;
 import com.guch8017.rediveEquipment.util.Constant;
 import com.guch8017.rediveEquipment.util.IO;
@@ -227,6 +228,8 @@ public class HomeFragment extends Fragment {
                     Log.i("HomeFragment","Delete Database -wal:"+status);
                 }
                 BrotliUtils.deCompress(downloadTempFilePath, databaseFilePath);
+                DatabaseGenerater.generateComposeDatabase(HomeFragment.this.getContext());
+                DatabaseGenerater.generateDropDatabase(HomeFragment.this.getContext());
                 Intent intent = new Intent("com.guch8017.pcr.DATABASE_REFRESH");
                 swipeRefreshLayout.setRefreshing(false);
                 getContext().sendBroadcast(intent);

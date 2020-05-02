@@ -122,4 +122,10 @@
         android:layout_height="wrap_content"
         android:text="@string/cancel_char"
         android:id="@+id/cancel_char_btn"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40sp"
+        android:text="@string/delete_char"
+        android:id="@+id/delete_char_btn"/>
 </LinearLayout>

@@ -44,7 +44,7 @@
     <!-- 添加/修改角色界面 -->
     <string name="new_char">Add Character</string>
     <string name="modify_char">Modify Character</string>
-
+    <string name="delete_char">Delete Character</string>
     <string name="current_rank">Current Rank</string>
     <string name="target_rank">Target Rank</string>
     <string name="save_char">Save Content</string>

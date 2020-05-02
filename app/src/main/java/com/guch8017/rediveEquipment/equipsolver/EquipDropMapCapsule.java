@@ -26,6 +26,10 @@ public class EquipDropMapCapsule {
         return time;
     }
 
+    public int getIntTime(){
+        return (int)Math.ceil(time);
+    }
+
     public void setTime(int time) {
         this.time = time;
     }

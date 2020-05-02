@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -114,7 +113,7 @@ public class ModifyCharacterActivity extends AppCompatActivity {
 
             }
         });
-        ((Button)findViewById(R.id.save_char_btn)).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.save_char_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(saveChanges()){
@@ -122,10 +121,17 @@ public class ModifyCharacterActivity extends AppCompatActivity {
                 }
             }
         });
-        ((Button)findViewById(R.id.cancel_char_btn)).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.cancel_char_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ModifyCharacterActivity.this.finish();
+            }
+        });
+        findViewById(R.id.delete_char_btn).setEnabled(!isNew);
+        findViewById(R.id.delete_char_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ModifyCharacterActivity.this.deleteCharacter();
             }
         });
     }
@@ -242,6 +248,11 @@ public class ModifyCharacterActivity extends AppCompatActivity {
         ColorMatrix matrix = new ColorMatrix();
         matrix.setSaturation(0);
         v.setColorFilter(new ColorMatrixColorFilter(matrix));
+    }
+
+    private void deleteCharacter(){
+        mDatabase.removeCharacter(mBoxId, mUnitId);
+        this.finish();
     }
 
     private boolean saveChanges(){

@@ -63,7 +63,19 @@ public class BoxDetailActivity extends AppCompatActivity {
                     case 3:
                         Intent intent1 = new Intent(BoxDetailActivity.this, EquipRequirementActivity.class);
                         intent1.putExtra("boxId", box.id);
+                        intent1.putExtra("isPiece", false);
                         startActivity(intent1);
+                        break;
+                    case 4:
+                        Intent intent2 = new Intent(BoxDetailActivity.this, EquipRequirementActivity.class);
+                        intent2.putExtra("boxId", box.id);
+                        intent2.putExtra("isPiece", true);
+                        startActivity(intent2);
+                        break;
+                    case 6:
+                        Intent intent4 = new Intent(BoxDetailActivity.this, LinearSolverActivity.class);
+                        intent4.putExtra("boxId", box.id);
+                        startActivity(intent4);
                         break;
                     default:
                         break;

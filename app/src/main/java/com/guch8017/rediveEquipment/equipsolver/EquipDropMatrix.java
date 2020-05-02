@@ -32,8 +32,6 @@ public class EquipDropMatrix {
             e.printStackTrace();
             throw new FileNotFoundException("无法反序列化文件: " + Constant.compliedDropDataFilepath(context));
         }
-        // TODO: qiao加油, 这里请你按文档实现
-
     }
 
     /**

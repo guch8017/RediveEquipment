@@ -38,17 +38,19 @@ public class CharacterSelectActivity extends AppCompatActivity {
         StringBuilder sqlLimitBuilder = new StringBuilder();
         if(mBoxId != -1){
             List<DBCharacter> characters = mDatabase.getCharacterList(mBoxId);
-            sqlLimitBuilder.append("unit_id NOT IN (");
+            if(characters.size() != 0) {
+                sqlLimitBuilder.append("unit_id NOT IN (");
 
-            for(DBCharacter character: characters){
-                sqlLimitBuilder.append(character.characterId);
-                sqlLimitBuilder.append(',');
+                for (DBCharacter character : characters) {
+                    sqlLimitBuilder.append(character.characterId);
+                    sqlLimitBuilder.append(',');
+                }
+                sqlLimitBuilder.deleteCharAt(sqlLimitBuilder.length() - 1);
+                sqlLimitBuilder.append(");");
             }
-            sqlLimitBuilder.deleteCharAt(sqlLimitBuilder.length() - 1);
-            sqlLimitBuilder.append(");");
         }
         DatabaseReflector reflector = new DatabaseReflector(this);
-        List<DBUnitProfile> unitData = (List<DBUnitProfile>) reflector.reflectClass(DBUnitProfile.class.getName(), DBUnitProfile.tableName, sqlLimitBuilder.toString());
+        List<DBUnitProfile> unitData = (List<DBUnitProfile>) reflector.reflectClass(DBUnitProfile.class.getName(), DBUnitProfile.tableName, (sqlLimitBuilder.length() == 0)?null:sqlLimitBuilder.toString());
         setContentView(R.layout.activity_box_char_selector);
         ListView listView = findViewById(R.id.character_list);
         UnitListAdapter adapter = new UnitListAdapter(this, R.layout.unit_list_item, unitData);

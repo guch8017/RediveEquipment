@@ -24,6 +24,7 @@ import java.util.Comparator;
  */
 @SuppressWarnings("Convert2Diamond")
 public class EquipSolver {
+    private static final String TAG = "EquipSolver";
     /**
      * 解决基础掉率下的刷地图次数的线性规划
      * @param dropMatrix 装备掉落表
@@ -48,7 +49,8 @@ public class EquipSolver {
             if (maps == null) continue;
             for (EquipDropCapsule map : maps) {
                 long nowMapId = map.getMapQuestId();
-                if (mapId2xIndex.indexOfKey(nowMapId) == -1) {
+                //TODO : TEST
+                if (mapId2xIndex.indexOfKey(nowMapId) < 0) {
                     // 地图未建立映射
                     xIndex2mapId.put(mapCount, nowMapId);
                     mapId2xIndex.put(nowMapId, mapCount);
