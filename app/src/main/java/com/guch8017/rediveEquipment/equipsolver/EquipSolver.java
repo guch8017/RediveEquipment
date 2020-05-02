@@ -1,6 +1,7 @@
 package com.guch8017.rediveEquipment.equipsolver;
 
 import android.util.ArrayMap;
+import android.util.Log;
 import android.util.LongSparseArray;
 import android.util.SparseArray;
 import android.util.SparseLongArray;
@@ -11,6 +12,7 @@ import org.apache.commons.math3.optim.PointValuePair;
 import org.apache.commons.math3.optim.linear.LinearConstraint;
 import org.apache.commons.math3.optim.linear.LinearConstraintSet;
 import org.apache.commons.math3.optim.linear.LinearObjectiveFunction;
+import org.apache.commons.math3.optim.linear.NonNegativeConstraint;
 import org.apache.commons.math3.optim.linear.Relationship;
 import org.apache.commons.math3.optim.linear.SimplexSolver;
 import org.apache.commons.math3.optim.nonlinear.scalar.GoalType;
@@ -34,6 +36,7 @@ public class EquipSolver {
     @Nullable
     public static ArrayList<EquipDropMapCapsule> SingleSolve(EquipDropMatrix dropMatrix,
                                                              EquipDropNeedList needList){
+
         ArrayList<EquipDropMapCapsule> ans = new ArrayList<EquipDropMapCapsule>();
         // 首先, 建立 mapId到xIndex的映射 以及 xIndex到mapId的映射
         // xIndex即为方程中x的下标, 从0开始
@@ -67,12 +70,13 @@ public class EquipSolver {
 
         // 建立基本的大于0的平凡约束
         Collection<LinearConstraint> constraints = new ArrayList<LinearConstraint>();
+/* 自带非负约束，故删除此项
         for (int i = 0;i < mapCount;++i){
             double[] cons = new double[mapCount];
             cons[i] = 1.0;
             constraints.add(new LinearConstraint(cons, Relationship.GEQ, 0));
         }
-
+*/
         // 根据needList, 建立线性规划的约束并求解
         for (int i = 0;i < needListIdNumMap.size(); ++i){
             long nowEquipId = needListIdNumMap.keyAt(i);
@@ -92,13 +96,17 @@ public class EquipSolver {
             constraints.add(new LinearConstraint(cons, Relationship.GEQ, needListIdNumMap.valueAt(i)));
         }
 
+        long stTime = System.currentTimeMillis();
         // 求解
         PointValuePair solution;
-        solution = (new SimplexSolver()).optimize(linearFunc, new LinearConstraintSet(constraints), GoalType.MINIMIZE);
+        // 改为自带非负约束
+        NonNegativeConstraint negativeConstraint = new NonNegativeConstraint(true);
+        solution = (new SimplexSolver()).optimize(linearFunc, new LinearConstraintSet(constraints), GoalType.MINIMIZE, negativeConstraint);
         if (solution == null)
             return null;
         double[] solAns = solution.getPoint();
-
+        long edTime = System.currentTimeMillis();
+        Log.i(TAG, "SingleSolve: Solve Finish. Time cost " + (edTime-stTime) + "ms");
         // 包装结果
         for (int i = 0;i < solAns.length;++i){
             if (solAns[i] != 0){
