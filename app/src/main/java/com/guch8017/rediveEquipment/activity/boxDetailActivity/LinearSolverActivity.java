@@ -58,6 +58,7 @@ public class LinearSolverActivity extends AppCompatActivity {
                     HashMap<Integer, Integer> pieceMap = EquipRequirementCalculator.getPieceRequirement(LinearSolverActivity.this, equipMap);
                     ArrayList<EquipNeedCapsule> list = EquipNeedCapsule.forHashMap(LinearSolverActivity.this, pieceMap);
                     ArrayList<EquipDropMapCapsule> mapList =  EquipSolver.SingleSolve(EquipDropMatrix.getInstance(LinearSolverActivity.this), EquipDropNeedList.forCapsule(list));
+
                     adapter = new MapPlanningAdapter(LinearSolverActivity.this, R.layout.map_requirement_item, mapList);
                     
                 }catch (Exception e){

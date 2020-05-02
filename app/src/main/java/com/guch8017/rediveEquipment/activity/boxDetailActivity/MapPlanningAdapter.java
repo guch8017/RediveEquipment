@@ -29,7 +29,7 @@ public class MapPlanningAdapter extends ArrayAdapter<EquipDropMapCapsule> {
         capsules.sort(new Comparator<EquipDropMapCapsule>() {
             @Override
             public int compare(EquipDropMapCapsule o1, EquipDropMapCapsule o2) {
-                return o1.getIntTime() - o2.getIntTime();
+                return o2.getIntTime() - o1.getIntTime();
             }
         });
         for(EquipDropMapCapsule capsule: capsules){

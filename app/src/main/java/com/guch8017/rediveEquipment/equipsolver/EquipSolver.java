@@ -102,6 +102,7 @@ public class EquipSolver {
         // 包装结果
         for (int i = 0;i < solAns.length;++i){
             if (solAns[i] != 0){
+                if(solAns[i] == 0) continue; // 跳过为0的项
                 EquipDropMapCapsule temp = new EquipDropMapCapsule(xIndex2mapId.get(i), solAns[i]);
                 ans.add(temp);
             }
