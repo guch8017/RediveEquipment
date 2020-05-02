@@ -68,10 +68,6 @@ public class BoxCharacterActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
-        if(!ImageLoader.getInstance().isInited()){
-            Log.i(TAG, "Warning: ImageLoader未初始化");
-            ImageLoader.getInstance().init(Constant.imageLoaderConfiguration(this));
-        }
         characters.clear();
         characters.addAll(mDatabase.getCharacterList(boxId));
         ((CharacterAdapter)mListView.getAdapter()).notifyDataSetChanged();

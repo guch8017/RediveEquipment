@@ -45,9 +45,12 @@ public class Constant {
         return prefix + postfix;
     }
 
-    public static String compliedDataFilepath(Context context){
-        Log.w(TAG, "compliedDataFilepath: " + context.getFilesDir().toString());
+    public static String compliedDropDataFilepath(Context context){
+        Log.w(TAG, "compliedDropDataFilepath: " + context.getFilesDir().toString());
         return context.getFilesDir().toString() + "/drop.data";
+    }
+    public static String compliedComposeDataFilepath(Context context){
+        return context.getFilesDir().toString() + "/compose.data";
     }
     public static final String databaseVersionUrl = "https://redive.estertion.win/last_version_jp.json";
     public static final String databaseUrl = "https://redive.estertion.win/db/redive_jp.db.br";

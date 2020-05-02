@@ -60,6 +60,11 @@ public class BoxDetailActivity extends AppCompatActivity {
                         intent.putExtra("boxId", box.id);
                         startActivity(intent);
                         break;
+                    case 3:
+                        Intent intent1 = new Intent(BoxDetailActivity.this, EquipRequirementActivity.class);
+                        intent1.putExtra("boxId", box.id);
+                        startActivity(intent1);
+                        break;
                     default:
                         break;
                 }

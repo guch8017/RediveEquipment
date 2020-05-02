@@ -64,12 +64,6 @@ public class EquipmentSearchActivity extends AppCompatActivity {
                 equipmentName = ((List<DBEquipmentData>)(reflector.reflectClass(DBEquipmentData.class.getName(), DBEquipmentData.tableName, "equipment_id = " + equipmentId))).get(0).equipment_name;
                 setTitle(equipmentName);
                 quests = GetQuests.getQuests(reflector, equipmentId);
-                StringBuilder builder = new StringBuilder("数据查询结果:");
-                for(DBQuest quest : quests){
-                    builder.append(quest.quest_name);
-                    builder.append(',');
-                }
-                Log.i("Debug", builder.toString());
                 Intent intent = new Intent("com.guch8017.pcr.FINISH_LOADING");
                 EquipmentSearchActivity.this.sendBroadcast(intent);
                 mProgressDialog.dismiss();

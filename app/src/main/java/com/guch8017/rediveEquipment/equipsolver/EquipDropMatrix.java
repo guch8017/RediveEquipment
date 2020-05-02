@@ -1,8 +1,6 @@
 package com.guch8017.rediveEquipment.equipsolver;
 
 import android.content.Context;
-import android.util.Log;
-import android.util.LongSparseArray;
 
 import com.guch8017.rediveEquipment.util.Constant;
 
@@ -11,7 +9,6 @@ import java.io.FileNotFoundException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * 表示装备掉落表, 意义见文档
@@ -29,11 +26,11 @@ public class EquipDropMatrix {
     private EquipDropMatrix(Context context)throws FileNotFoundException {
 
         try{
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Constant.compliedDataFilepath(context)));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Constant.compliedDropDataFilepath(context)));
             equipIdCapsMap = (HashMap<Long, ArrayList<EquipDropCapsule>>) ois.readObject();
         }catch (Exception e){
             e.printStackTrace();
-            throw new FileNotFoundException("无法反序列化文件: " + Constant.compliedDataFilepath(context));
+            throw new FileNotFoundException("无法反序列化文件: " + Constant.compliedDropDataFilepath(context));
         }
         // TODO: qiao加油, 这里请你按文档实现
 

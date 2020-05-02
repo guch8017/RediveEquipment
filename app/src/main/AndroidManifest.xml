@@ -29,6 +29,7 @@
         <activity android:name=".activity.boxDetailActivity.BoxCharacterActivity"/>
         <activity android:name=".activity.boxDetailActivity.CharacterSelectActivity"/>
         <activity android:name=".activity.boxDetailActivity.ModifyCharacterActivity"/>
+        <activity android:name=".activity.boxDetailActivity.EquipRequirementActivity"/>
     </application>
 
 </manifest>
