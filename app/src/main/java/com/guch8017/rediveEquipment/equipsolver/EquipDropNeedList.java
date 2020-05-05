@@ -26,8 +26,8 @@ public class EquipDropNeedList {
     public static EquipDropNeedList forCapsule(List<EquipNeedCapsule> list){
         EquipDropNeedList ins = new EquipDropNeedList();
         for(EquipNeedCapsule capsule: list){
-            Log.d(TAG, "forCapsule: EquipmentId: " + capsule.getEquipmentId() + " Requirement: " + capsule.getRequirement());
-            ins.set((long)capsule.getEquipmentId(), capsule.getRequirement());
+            //Log.d(TAG, "forCapsule: EquipmentId: " + capsule.getEquipmentId() + " Requirement: " + capsule.getRequirement());
+            ins.set((long)capsule.getEquipmentId(), capsule.getRequirement() * 100);
         }
         return ins;
     }

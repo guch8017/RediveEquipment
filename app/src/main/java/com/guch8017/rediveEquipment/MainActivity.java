@@ -50,24 +50,7 @@ public class MainActivity extends AppCompatActivity {
             getRWPermission();
         }
         ImageLoader.getInstance().init(Constant.imageLoaderConfiguration(this));
-        new Thread(){
-            @Override
-            public void run() {
-                try {
-                    DatabaseGenerater.generateComposeDatabase(MainActivity.this);
-                    DatabaseGenerater.generateDropDatabase(MainActivity.this);
-                    EquipDropCapsule[] cs = EquipDropMatrix.getInstance(MainActivity.this).getMaps(123132L);
-                    for(EquipDropCapsule c: cs){
-                        Log.i(TAG, "Map ID :" + c.getMapQuestId() + " Prop: " + c.getDropProb());
-                    }
-                    EquipDropNeedList l = new EquipDropNeedList();
-                    l.set(123132, 5);
-                    EquipSolver.SingleSolve(EquipDropMatrix.getInstance(MainActivity.this), l);
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
-        };
+
     }
 
     @TargetApi(23)

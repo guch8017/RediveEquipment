@@ -52,7 +52,6 @@ public class EquipSolver {
             if (maps == null) continue;
             for (EquipDropCapsule map : maps) {
                 long nowMapId = map.getMapQuestId();
-                //TODO : TEST
                 if (mapId2xIndex.indexOfKey(nowMapId) < 0) {
                     // 地图未建立映射
                     xIndex2mapId.put(mapCount, nowMapId);
@@ -68,8 +67,9 @@ public class EquipSolver {
             linearFuncTarget[i] = 1.0;
         LinearObjectiveFunction linearFunc = new LinearObjectiveFunction(linearFuncTarget, 0);
 
-        // 建立基本的大于0的平凡约束
+
         Collection<LinearConstraint> constraints = new ArrayList<LinearConstraint>();
+        // 建立基本的大于0的平凡约束
 /* 自带非负约束，故删除此项
         for (int i = 0;i < mapCount;++i){
             double[] cons = new double[mapCount];
@@ -81,8 +81,14 @@ public class EquipSolver {
         for (int i = 0;i < needListIdNumMap.size(); ++i){
             long nowEquipId = needListIdNumMap.keyAt(i);
             // 遍历这件装备所出现的所有地图
+            if(nowEquipId == 115616){
+                Log.i(TAG, "SingleSolve: DBG PAUSE");
+            }
             EquipDropCapsule[] maps = dropMatrix.getMaps(nowEquipId);
-            if (maps == null) continue;
+            if (maps == null){
+                Log.w(TAG, "SingleSolve: Warning: map for " + nowEquipId + " is null");
+                continue;
+            }
             // 建立约束方程组
             double[] cons = new double[mapCount];
             for (EquipDropCapsule map : maps) {
@@ -90,7 +96,9 @@ public class EquipSolver {
                 if (mapId2xIndex.indexOfKey(nowMapId) >= 0) {
 
                     int xIndex = mapId2xIndex.get(nowMapId);
-                    cons[xIndex] += map.getDropProb();
+                    cons[xIndex] = map.getDropProb();
+                }else{
+                    Log.w(TAG, "SingleSolve: Warning: can't get index for mapId: " + nowMapId);
                 }
             }
             constraints.add(new LinearConstraint(cons, Relationship.GEQ, needListIdNumMap.valueAt(i)));
@@ -101,7 +109,7 @@ public class EquipSolver {
         PointValuePair solution;
         // 改为自带非负约束
         NonNegativeConstraint negativeConstraint = new NonNegativeConstraint(true);
-        solution = (new SimplexSolver()).optimize(linearFunc, new LinearConstraintSet(constraints), GoalType.MINIMIZE, negativeConstraint);
+        solution = (new SimplexSolver(0.1)).optimize(linearFunc, new LinearConstraintSet(constraints), GoalType.MINIMIZE, negativeConstraint);
         if (solution == null)
             return null;
         double[] solAns = solution.getPoint();

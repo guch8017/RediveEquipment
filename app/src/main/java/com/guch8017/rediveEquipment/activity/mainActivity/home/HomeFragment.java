@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.arialyy.annotations.Download;
 import com.arialyy.aria.core.Aria;
 import com.arialyy.aria.core.task.DownloadTask;
+import com.guch8017.rediveEquipment.MainActivity;
 import com.guch8017.rediveEquipment.R;
 import com.guch8017.rediveEquipment.database.module.DBUnitProfile;
 import com.guch8017.rediveEquipment.database.Database;
@@ -228,8 +230,20 @@ public class HomeFragment extends Fragment {
                     Log.i("HomeFragment","Delete Database -wal:"+status);
                 }
                 BrotliUtils.deCompress(downloadTempFilePath, databaseFilePath);
-                DatabaseGenerater.generateComposeDatabase(HomeFragment.this.getContext());
-                DatabaseGenerater.generateDropDatabase(HomeFragment.this.getContext());
+                new Thread(){
+                    @Override
+                    public void run() {
+                        try {
+                            DatabaseGenerater.generateComposeDatabase(HomeFragment.this.getContext());
+                            DatabaseGenerater.generateDropDatabase(HomeFragment.this.getContext());
+                        }catch (Exception e){
+                            Looper.prepare();
+                            Toast.makeText(HomeFragment.this.getContext(), "预编译数据库失败，装备计算功能将不可用。", Toast.LENGTH_LONG).show();
+                            Looper.loop();
+                        }
+                    }
+                }.start();
+
                 Intent intent = new Intent("com.guch8017.pcr.DATABASE_REFRESH");
                 swipeRefreshLayout.setRefreshing(false);
                 getContext().sendBroadcast(intent);
