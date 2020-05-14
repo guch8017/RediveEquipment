@@ -55,7 +55,6 @@ public class EquipSolver {
             if (maps == null) continue;
             for (EquipDropCapsule map : maps) {
                 long nowMapId = map.getMapQuestId();
-                //TODO : TEST
                 if (mapId2xIndex.indexOfKey(nowMapId) < 0) {
                     // 地图未建立映射
                     xIndex2mapId.put(mapCount, nowMapId);

@@ -77,6 +77,9 @@ public class BoxDetailActivity extends AppCompatActivity {
                         intent4.putExtra("boxId", box.id);
                         startActivity(intent4);
                         break;
+                    case 7:
+                        mDatabase.deleteBox(box.id);
+                        finish();
                     default:
                         break;
                 }

@@ -2,6 +2,7 @@ package com.guch8017.rediveEquipment.equipsolver;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import com.guch8017.rediveEquipment.database.DatabaseReflector;
 import com.guch8017.rediveEquipment.database.module.DBEquipmentCraft;
@@ -22,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 public class DatabaseGenerater {
+    private static final String TAG = "DatabaseGenerater";
     /**
      * 生成一个地图掉落数据库并序列化到文件
      * @param context 上下文
@@ -32,7 +34,10 @@ public class DatabaseGenerater {
         List<DBQuest> quests = GetQuests.getQuests(database, -1);
         for(DBQuest quest: quests){
             // 跳过Hard关卡和心碎宝珠本
-            if(quest.quest_id > 12000000) continue;
+            if(quest.quest_id > 12000000){
+                Log.d(TAG, "generateDropDatabase: Jumping Map: " + quest.quest_id);
+                continue;
+            }
             for(DBWave.Reward reward: quest.rewards){
                 // 这里写死了是否为掉落物的判断逻辑，反正以后也不会有新的低等装备加入了
                 if(reward.rewardID > 110000 || reward.rewardID < 102282 || reward.rewardID == 102461 || (reward.rewardID >= 102551 && reward.rewardID <= 102612)){
