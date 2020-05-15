@@ -24,4 +24,23 @@
     <string name="title_home">角色</string>
     <string name="title_notifications">计算器</string>
     <string name="crafted_cost">合成花费</string>
+    <string name="ERR_TARGET_EQUIP">错误：当前已装备的装备在目标中不存在</string>
+    <string name="ERR_TARGET_SMALLER">错误：目标Rank应大于等于当前Rank</string>
+    <string name="box_character">角色</string>
+    <string name="cancel">取消</string>
+    <string name="cancel_char">取消</string>
+    <string name="confirm">确认</string>
+    <string name="current_rank">当前Rank</string>
+    <string name="delete_box">删除Box</string>
+    <string name="delete_char">删除角色</string>
+    <string name="equip_requirement">装备需求计算</string>
+    <string name="map_plan">地图规划</string>
+    <string name="modify_char">修改角色</string>
+    <string name="modify_image">修改Box图片</string>
+    <string name="modify_name">修改Box名</string>
+    <string name="new_char">添加角色</string>
+    <string name="piece_own">已有碎片</string>
+    <string name="piece_requirement">碎片需求计算</string>
+    <string name="save_char">保存角色</string>
+    <string name="target_rank">目标Rank</string>
 </resources>

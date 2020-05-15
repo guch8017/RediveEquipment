@@ -22,8 +22,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class DatabaseGenerater {
-    private static final String TAG = "DatabaseGenerater";
+public class DatabaseGenerator {
+    private static final String TAG = "DatabaseGenerator";
     /**
      * 生成一个地图掉落数据库并序列化到文件
      * @param context 上下文
@@ -40,7 +40,7 @@ public class DatabaseGenerater {
             }
             for(DBWave.Reward reward: quest.rewards){
                 // 这里写死了是否为掉落物的判断逻辑，反正以后也不会有新的低等装备加入了
-                if(reward.rewardID > 110000 || reward.rewardID < 102282 || reward.rewardID == 102461 || (reward.rewardID >= 102551 && reward.rewardID <= 102612)){
+                if(reward.rewardID > 110000 || (reward.rewardID > 99999 && reward.rewardID < 102282) || reward.rewardID == 102461 || (reward.rewardID >= 102551 && reward.rewardID <= 102612)){
                     if(map.containsKey((long)reward.rewardID)){
                         map.get((long)reward.rewardID).add(new EquipDropCapsule(quest.quest_id, reward.rewardID, reward.odds));
                     }else{

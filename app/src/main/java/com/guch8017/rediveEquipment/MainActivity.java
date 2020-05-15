@@ -5,20 +5,10 @@ import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.guch8017.rediveEquipment.database.Database;
-import com.guch8017.rediveEquipment.equipsolver.DatabaseGenerater;
-import com.guch8017.rediveEquipment.equipsolver.EquipDropCapsule;
-import com.guch8017.rediveEquipment.equipsolver.EquipDropMapCapsule;
-import com.guch8017.rediveEquipment.equipsolver.EquipDropMatrix;
-import com.guch8017.rediveEquipment.equipsolver.EquipDropNeedList;
-import com.guch8017.rediveEquipment.equipsolver.EquipSolver;
 import com.guch8017.rediveEquipment.util.Constant;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,9 +16,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";

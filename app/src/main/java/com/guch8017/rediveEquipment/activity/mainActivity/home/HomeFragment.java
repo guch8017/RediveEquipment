@@ -16,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,13 +26,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.arialyy.annotations.Download;
 import com.arialyy.aria.core.Aria;
 import com.arialyy.aria.core.task.DownloadTask;
-import com.guch8017.rediveEquipment.MainActivity;
 import com.guch8017.rediveEquipment.R;
 import com.guch8017.rediveEquipment.database.module.DBUnitProfile;
 import com.guch8017.rediveEquipment.database.Database;
 import com.guch8017.rediveEquipment.database.DatabaseReflector;
 import com.guch8017.rediveEquipment.activity.unitDetailActivity.UnitDetailActivity;
-import com.guch8017.rediveEquipment.equipsolver.DatabaseGenerater;
+import com.guch8017.rediveEquipment.equipsolver.DatabaseGenerator;
 import com.guch8017.rediveEquipment.util.BrotliUtils;
 import com.guch8017.rediveEquipment.util.Constant;
 import com.guch8017.rediveEquipment.util.IO;
@@ -234,8 +232,8 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void run() {
                         try {
-                            DatabaseGenerater.generateComposeDatabase(HomeFragment.this.getContext());
-                            DatabaseGenerater.generateDropDatabase(HomeFragment.this.getContext());
+                            DatabaseGenerator.generateComposeDatabase(HomeFragment.this.getContext());
+                            DatabaseGenerator.generateDropDatabase(HomeFragment.this.getContext());
                         }catch (Exception e){
                             Looper.prepare();
                             Toast.makeText(HomeFragment.this.getContext(), "预编译数据库失败，装备计算功能将不可用。", Toast.LENGTH_LONG).show();

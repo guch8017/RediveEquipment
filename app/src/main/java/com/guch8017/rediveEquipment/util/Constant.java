@@ -52,8 +52,8 @@ public class Constant {
     public static String compliedComposeDataFilepath(Context context){
         return context.getFilesDir().toString() + "/compose.data";
     }
-    public static final String databaseVersionUrl = "https://redive.estertion.win/last_version_jp.json";
-    public static final String databaseUrl = "https://redive.estertion.win/db/redive_jp.db.br";
+    public static final String databaseVersionUrl = "https://redive.estertion.win/last_version_cn.json";
+    public static final String databaseUrl = "https://redive.estertion.win/db/redive_cn.db.br";
     public final static DisplayImageOptions displayImageOption = new DisplayImageOptions.Builder()
             .cacheInMemory(true).cacheOnDisk(true)
             .showImageOnLoading(R.drawable.ic_launcher_background).build();

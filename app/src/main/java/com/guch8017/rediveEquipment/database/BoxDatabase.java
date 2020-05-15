@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import androidx.annotation.Nullable;
 
 import com.guch8017.rediveEquipment.database.module.DBBox;
+import com.guch8017.rediveEquipment.database.module.DBBoxPiece;
 import com.guch8017.rediveEquipment.database.module.DBCharacter;
 
 import java.util.ArrayList;
@@ -89,9 +90,36 @@ public class BoxDatabase {
     public void deleteBox(int boxId){
         String sql = "DELETE FROM Box WHERE box_id="+boxId;
         String sql2 = "DELETE FROM BoxHeader WHERE id="+boxId;
-        database.rawQuery(sql, new String[]{}).close();
-        database.rawQuery(sql2, new String[]{}).close();
+        database.execSQL(sql, new String[]{});
+        database.execSQL(sql2, new String[]{});
         dataModified = true;
+    }
+
+    public List<DBBoxPiece> getPiece(int boxId){
+        List<DBBoxPiece> pieces = new ArrayList<>();
+        String sql = "SELECT * FROM BoxPiece WHERE box_id=?";
+        Cursor cursor = database.rawQuery(sql, new String[]{String.valueOf(boxId)});
+        if(cursor.moveToNext()){
+            DBBoxPiece piece = new DBBoxPiece();
+            piece.count = cursor.getInt(cursor.getColumnIndex("equip_cnt"));
+            piece.equipId = cursor.getInt(cursor.getColumnIndex("equip_id"));
+            pieces.add(piece);
+        }
+        cursor.close();
+        return pieces;
+    }
+
+    public void deletePiece(int boxId, int equip_id){
+        String sql = "DELETE FROM BoxPiece WHERE equip_id=? AND box_id=?";
+        database.execSQL(sql, new String[]{String.valueOf(equip_id), String.valueOf(boxId)});
+    }
+    public void addPiece(int boxId, DBBoxPiece piece){
+        String sql = "INSERT INTO BoxPiece (box_id, equip_cnt, equip_id) VALUES (?, ?, ?)";
+        database.execSQL(sql, new String[]{String.valueOf(boxId), String.valueOf(piece.count), String.valueOf(piece.equipId)});
+    }
+    public void modifyPiece(int boxId, DBBoxPiece piece){
+        String sql = "UPDATE BoxPiece SET equip_cnt=? WHERE box_id=? AND equip_id=?";
+        database.execSQL(sql, new String[]{String.valueOf(piece.count), String.valueOf(boxId), String.valueOf(piece.equipId)});
     }
 
     public void addBox(){

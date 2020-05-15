@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -87,17 +88,28 @@ public class BoxDetailActivity extends AppCompatActivity {
                 // TODO: Box设置/浏览按钮响应
             }
         });
-        ArrayList<String> list = new ArrayList<>();
-        list.add(getString(R.string.modify_name));
-        list.add(getString(R.string.modify_image));
-        list.add(getString(R.string.box_character));
-        list.add(getString(R.string.equip_requirement));
-        list.add(getString(R.string.piece_requirement));
-        list.add(getString(R.string.piece_own));
-        list.add(getString(R.string.map_plan));
-        list.add(getString(R.string.delete_box));
+        ArrayList<MenuItem> list = new ArrayList<>();
+        list.add(new MenuItem(getString(R.string.modify_name), R.drawable.ic_name));
+        list.add(new MenuItem(getString(R.string.modify_image), R.drawable.ic_box_image));
+        list.add(new MenuItem(getString(R.string.box_character), R.drawable.ic_character));
+        list.add(new MenuItem(getString(R.string.equip_requirement), R.drawable.ic_equipment));
+        list.add(new MenuItem(getString(R.string.piece_requirement), R.drawable.ic_equipment));
+        list.add(new MenuItem(getString(R.string.piece_own), R.drawable.ic_piece_owned));
+        list.add(new MenuItem(getString(R.string.map_plan), R.drawable.ic_map_plan));
+        list.add(new MenuItem(getString(R.string.delete_box), R.drawable.ic_delete));
+
         BDLAdapter adapter = new BDLAdapter(this, R.layout.box_setup_item, list);
         listView.setAdapter(adapter);
+        listView.setDivider(null);
+    }
+
+    private class MenuItem{
+        String name;
+        int id;
+        MenuItem(String n, int i){
+            name = n;
+            id = i;
+        }
     }
 
     private void modifyBoxName(){
@@ -115,9 +127,9 @@ public class BoxDetailActivity extends AppCompatActivity {
                 }).setNegativeButton(getString(R.string.cancel), null).show();
     }
 
-    class BDLAdapter extends ArrayAdapter<String> {
+    class BDLAdapter extends ArrayAdapter<MenuItem> {
         private int mResourceId;
-        BDLAdapter(Context context, int resourceID, List<String> list){
+        BDLAdapter(Context context, int resourceID, List<MenuItem> list){
             super(context, resourceID, list);
             mResourceId = resourceID;
         }
@@ -129,16 +141,20 @@ public class BoxDetailActivity extends AppCompatActivity {
             if(convertView == null){
                 convertView = LayoutInflater.from(getContext()).inflate(mResourceId, parent, false);
                 vh.itemText = convertView.findViewById(R.id.box_setup_item);
+                vh.itemImg = convertView.findViewById(R.id.box_setup_img);
                 convertView.setTag(vh);
             }else{
                 vh = (BoxSetupViewHolder)convertView.getTag();
             }
-            vh.itemText.setText(getItem(position));
+            MenuItem item = getItem(position);
+            vh.itemText.setText(item.name);
+            vh.itemImg.setImageDrawable(getContext().getDrawable(item.id));
             return convertView;
         }
 
         class BoxSetupViewHolder{
             TextView itemText;
+            ImageView itemImg;
         }
     }
 }
